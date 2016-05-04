@@ -12,9 +12,12 @@
 		20566B261CDA5E2C00DD9071 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20566B241CDA5E2C00DD9071 /* Main.storyboard */; };
 		20566B281CDA5E2C00DD9071 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 20566B271CDA5E2C00DD9071 /* Assets.xcassets */; };
 		20566B2B1CDA5E2C00DD9071 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20566B291CDA5E2C00DD9071 /* LaunchScreen.storyboard */; };
+		85210361AAC007111DD58852 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13FA7BACC9D87BD4DF36CD05 /* Pods.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		13FA7BACC9D87BD4DF36CD05 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		202152AF1CDA60F600EAF572 /* Kaupunkifillarit-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Kaupunkifillarit-Bridging-Header.h"; sourceTree = "<group>"; };
 		20566B1D1CDA5E2C00DD9071 /* Kaupunkifillarit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Kaupunkifillarit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		20566B201CDA5E2C00DD9071 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		20566B221CDA5E2C00DD9071 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -22,6 +25,8 @@
 		20566B271CDA5E2C00DD9071 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		20566B2A1CDA5E2C00DD9071 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		20566B2C1CDA5E2C00DD9071 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4F69552659BEB73F47E43221 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		550BC91C0CAB129EF3B9D56A /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +34,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				85210361AAC007111DD58852 /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -40,6 +46,8 @@
 			children = (
 				20566B1F1CDA5E2C00DD9071 /* Kaupunkifillarit */,
 				20566B1E1CDA5E2C00DD9071 /* Products */,
+				F07883761FBFD03C44124305 /* Pods */,
+				6E6E7B9AB35B7A957B32B0E9 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -60,8 +68,26 @@
 				20566B271CDA5E2C00DD9071 /* Assets.xcassets */,
 				20566B291CDA5E2C00DD9071 /* LaunchScreen.storyboard */,
 				20566B2C1CDA5E2C00DD9071 /* Info.plist */,
+				202152AF1CDA60F600EAF572 /* Kaupunkifillarit-Bridging-Header.h */,
 			);
 			path = Kaupunkifillarit;
+			sourceTree = "<group>";
+		};
+		6E6E7B9AB35B7A957B32B0E9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				13FA7BACC9D87BD4DF36CD05 /* Pods.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F07883761FBFD03C44124305 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				550BC91C0CAB129EF3B9D56A /* Pods.debug.xcconfig */,
+				4F69552659BEB73F47E43221 /* Pods.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -71,9 +97,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 20566B2F1CDA5E2C00DD9071 /* Build configuration list for PBXNativeTarget "Kaupunkifillarit" */;
 			buildPhases = (
+				7539546F891AB7B297023F51 /* Check Pods Manifest.lock */,
 				20566B191CDA5E2C00DD9071 /* Sources */,
 				20566B1A1CDA5E2C00DD9071 /* Frameworks */,
 				20566B1B1CDA5E2C00DD9071 /* Resources */,
+				9E0C507015DEB048291D33DF /* Embed Pods Frameworks */,
+				27D123FEF82BB1237A64EDDE /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -130,6 +159,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		27D123FEF82BB1237A64EDDE /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7539546F891AB7B297023F51 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		9E0C507015DEB048291D33DF /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		20566B191CDA5E2C00DD9071 /* Sources */ = {
@@ -250,23 +327,30 @@
 		};
 		20566B301CDA5E2C00DD9071 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 550BC91C0CAB129EF3B9D56A /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = Kaupunkifillarit/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = io.github.lauripiispanen.Kaupunkifillarit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Kaupunkifillarit/Kaupunkifillarit-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
 		20566B311CDA5E2C00DD9071 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4F69552659BEB73F47E43221 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = Kaupunkifillarit/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = io.github.lauripiispanen.Kaupunkifillarit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Kaupunkifillarit/Kaupunkifillarit-Bridging-Header.h";
 			};
 			name = Release;
 		};
@@ -289,6 +373,7 @@
 				20566B311CDA5E2C00DD9071 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
