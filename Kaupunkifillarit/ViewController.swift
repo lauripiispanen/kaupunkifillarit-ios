@@ -140,14 +140,17 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     func redrawStations() {
+        let markers = self.stations.map { (station) -> (Station, UIImage) in
+            return (station, self.createMarkerIcon(station))
+        }
         dispatch_async(dispatch_get_main_queue(), {
             self.map!.clear()
-            self.stations.forEach { (station) -> Void in
+            markers.forEach { (stationAndMarker) -> Void in
+                let station = stationAndMarker.0
                 let coords = CLLocationCoordinate2DMake(station.lat, station.lon)
                 let marker = GMSMarker(position: coords)
-                marker.icon = self.createMarkerIcon(station)
+                marker.icon = stationAndMarker.1
                 marker.map = self.map!
-
             }
         })
     }
@@ -211,8 +214,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         UIGraphicsBeginImageContextWithOptions(size, view.opaque, 0.0)
         CGContextSetShadow(UIGraphicsGetCurrentContext(), CGSize(width: 0, height: 4), 8.0)
         
-        let rect = CGRect(x: 5.0, y: 0.0, width: view.bounds.width, height: view.bounds.height)
-        view.drawViewHierarchyInRect(rect, afterScreenUpdates: true)
+        view.layer.renderInContext(UIGraphicsGetCurrentContext()!)
         
         let img = UIGraphicsGetImageFromCurrentImageContext()
         
