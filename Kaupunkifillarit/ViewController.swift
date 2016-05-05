@@ -65,16 +65,19 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         let nearestStationText = UILabel(frame: CGRect(x: 0, y: 0, width: 100.0, height: 100.0))
         self.nearestStationText = nearestStationText
         nearestStationText.textAlignment = .Center
+        nearestStationText.font = nearestStationText.font.fontWithSize(10.0)
         badge.addSubview(nearestStationText)
         
         let nearestStationDistance = UILabel(frame: CGRect(x: 0, y: 0, width: 100.0, height: 50.0))
         self.nearestStationDistance = nearestStationDistance
         nearestStationDistance.textAlignment = .Center
+        nearestStationDistance.font = nearestStationDistance.font.fontWithSize(12.0)
         badge.addSubview(nearestStationDistance)
         
         let nearestStationCount = UILabel(frame: CGRect(x: 0, y: 50.0, width: 100.0, height: 50.0))
         self.nearestStationCount = nearestStationCount
         nearestStationCount.textAlignment = .Center
+        nearestStationCount.font = nearestStationCount.font.fontWithSize(12.0)
         badge.addSubview(nearestStationCount)
         
         self.view.addSubview(badge)
