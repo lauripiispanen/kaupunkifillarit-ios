@@ -64,7 +64,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         returnButton.leftAnchor.constraintEqualToAnchor(borrowButton.rightAnchor).active = true
         borrowButton.widthAnchor.constraintEqualToAnchor(returnButton.widthAnchor).active = true
         
-        loadStationData()
+        startRefresh()
         
         self.locationManager.requestWhenInUseAuthorization()
         
@@ -77,6 +77,10 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
                 locationManager(locationManager, didUpdateLocations: [loc])
             }
         }
+    }
+    
+    func startRefresh() {
+        NSTimer.scheduledTimerWithTimeInterval(60.0, target: self, selector: #selector(loadStationData), userInfo: nil, repeats: true).fire()
     }
     
     func startBorrowing() {
@@ -121,6 +125,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     func loadStationData() {
+        print("Reloading station data...")
         let task = NSURLSession.sharedSession().dataTaskWithURL(API!) {
             (data, response, error) -> Void in
                 do {
