@@ -17,6 +17,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     var borrowing = true
     var borrowButton: UIButton?
     var returnButton: UIButton?
+    var nearestStationText: UILabel?
+    var nearestStationDistance: UILabel?
+    var nearestStationCount: UILabel?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,6 +51,39 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         
         self.view.addSubview(returnButton)
         
+        let badge = UIView()
+        badge.translatesAutoresizingMaskIntoConstraints = false
+        let ring = CAShapeLayer()
+        ring.shadowColor = UIColor.blackColor().CGColor
+        ring.shadowRadius = 10.0
+        ring.shadowOpacity = 0.4
+        ring.shadowOffset = CGSize(width: 0, height: 5)
+        ring.path = UIBezierPath(ovalInRect: CGRect(x: 0, y: 0, width: 100, height: 100)).CGPath
+        ring.fillColor = UIColor.whiteColor().CGColor
+        badge.layer.addSublayer(ring)
+        
+        let nearestStationText = UILabel(frame: CGRect(x: 0, y: 0, width: 100.0, height: 100.0))
+        self.nearestStationText = nearestStationText
+        nearestStationText.textAlignment = .Center
+        badge.addSubview(nearestStationText)
+        
+        let nearestStationDistance = UILabel(frame: CGRect(x: 0, y: 0, width: 100.0, height: 50.0))
+        self.nearestStationDistance = nearestStationDistance
+        nearestStationDistance.textAlignment = .Center
+        badge.addSubview(nearestStationDistance)
+        
+        let nearestStationCount = UILabel(frame: CGRect(x: 0, y: 50.0, width: 100.0, height: 50.0))
+        self.nearestStationCount = nearestStationCount
+        nearestStationCount.textAlignment = .Center
+        badge.addSubview(nearestStationCount)
+        
+        self.view.addSubview(badge)
+        
+        badge.topAnchor.constraintEqualToAnchor(topLayoutGuide.bottomAnchor, constant: 20.0).active = true
+        badge.widthAnchor.constraintEqualToConstant(100.0).active = true
+        badge.heightAnchor.constraintEqualToAnchor(badge.widthAnchor).active = true
+        badge.centerXAnchor.constraintEqualToAnchor(view.centerXAnchor).active = true
+        
         map!.translatesAutoresizingMaskIntoConstraints = false
         map!.bottomAnchor.constraintEqualToAnchor(bottomLayoutGuide.topAnchor, constant: -75.0).active = true
         map!.topAnchor.constraintEqualToAnchor(view.topAnchor).active = true
@@ -73,9 +109,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
             locationManager.startUpdatingLocation()
             
-            if let loc = locationManager.location {
-                locationManager(locationManager, didUpdateLocations: [loc])
-            }
+            syncLocation()
         }
     }
     
@@ -83,11 +117,18 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         NSTimer.scheduledTimerWithTimeInterval(60.0, target: self, selector: #selector(loadStationData), userInfo: nil, repeats: true).fire()
     }
     
+    func syncLocation() {
+        if let loc = locationManager.location {
+            locationManager(locationManager, didUpdateLocations: [loc])
+        }
+    }
+    
     func startBorrowing() {
         self.borrowing = true
         self.redrawStations()
         returnButton!.backgroundColor = UIColor.grayColor()
         borrowButton!.backgroundColor = UIColor.whiteColor()
+        syncLocation()
     }
     
     func startReturning() {
@@ -95,13 +136,16 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         self.redrawStations()
         borrowButton!.backgroundColor = UIColor.grayColor()
         returnButton!.backgroundColor = UIColor.whiteColor()
+        syncLocation()
     }
     
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locationManager.location,
-           let station = nearestStation(location) {
-            
-            print(station.name, distance(location)(station))
+           let station = nearestStation(location, borrowing: borrowing) {
+            nearestStationText!.text = station.name
+            nearestStationDistance!.text = String(format: "%1.0fm", distance(location)(station))
+            nearestStationCount!.text = String(format: "%d kpl", borrowing ? station.bikesAvailable : station.spacesAvailable)
+
         }
     }
 
@@ -116,10 +160,10 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         }
     }
     
-    func nearestStation(location: CLLocation) -> Station? {
+    func nearestStation(location: CLLocation, borrowing: Bool) -> Station? {
         let distanceTo = distance(location)
         
-        return stations.sort({ (station1, station2) -> Bool in
+        return stations.filter { borrowing ? $0.bikesAvailable > 0 : $0.spacesAvailable > 0 }.sort({ (station1, station2) -> Bool in
             distanceTo(station1) < distanceTo(station2)
         }).first
     }
