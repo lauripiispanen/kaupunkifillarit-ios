@@ -7,11 +7,12 @@
 //
 
 import UIKit
+import MapKit
 
-class ViewController: UIViewController, CLLocationManagerDelegate {
+class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
     
     let API = NSURL(string: "https://kaupunkifillarit.herokuapp.com/api/stations")
-    var map: GMSMapView?
+    var map: MKMapView?
     let locationManager = CLLocationManager()
     var stations = Array<Station>()
     var borrowing = true
@@ -23,10 +24,17 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        map = GMSMapView()
+        map = MKMapView()
+        map?.delegate = self
         
-        map!.camera = GMSCameraPosition.cameraWithLatitude(60.1699, longitude: 24.9384, zoom: 13.0)
-        map!.myLocationEnabled = true
+        
+        //map!.camera = GMSCameraPosition.cameraWithLatitude(60.1699, longitude: 24.9384, zoom: 13.0)
+        map!.showsUserLocation = true
+        let region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 60.1699, longitude: 24.9384), span: MKCoordinateSpan(latitudeDelta: 0.025, longitudeDelta: 0.025))
+        
+        map!.setRegion(region, animated: false)
+            
+        //map!.myLocationEnabled = true
         
         self.view.addSubview(map!)
         
@@ -191,18 +199,36 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         task.resume()
     }
     
+    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
+        if annotation is StationAnnotation {
+            let icon = (annotation as! StationAnnotation).icon
+            let station = (annotation as! StationAnnotation).station
+            
+            var pin = mapView.dequeueReusableAnnotationViewWithIdentifier(station.id)
+            if pin != nil {
+                pin?.annotation = annotation
+                pin?.image = icon
+            } else {
+                pin = MKAnnotationView(annotation: annotation, reuseIdentifier: station.id)
+                pin?.image = icon
+                pin?.canShowCallout = false
+            }
+            return pin
+        }
+        return nil
+    }
+    
     func redrawStations() {
         let markers = self.stations.map { (station) -> (Station, UIImage) in
             return (station, self.createMarkerIcon(station))
         }
         dispatch_async(dispatch_get_main_queue(), {
-            self.map!.clear()
+            self.map!.removeAnnotations(self.map!.annotations)
             markers.forEach { (stationAndMarker) -> Void in
                 let station = stationAndMarker.0
-                let coords = CLLocationCoordinate2DMake(station.lat, station.lon)
-                let marker = GMSMarker(position: coords)
-                marker.icon = stationAndMarker.1
-                marker.map = self.map!
+                let annotation = StationAnnotation(station, icon: stationAndMarker.1)
+                annotation.coordinate = CLLocationCoordinate2DMake(station.lat, station.lon)
+                self.map?.addAnnotation(annotation)
             }
         })
     }
@@ -296,5 +322,15 @@ struct Station {
             }
         }
         return nil
+    }
+}
+
+class StationAnnotation: MKPointAnnotation {
+    let station:Station
+    let icon:UIImage
+    init(_ station: Station, icon: UIImage) {
+        self.station = station
+        self.icon = icon
+        super.init()
     }
 }
