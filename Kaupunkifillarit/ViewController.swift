@@ -15,15 +15,54 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     let locationManager = CLLocationManager()
     var stations = Array<Station>()
     var borrowing = true
+    var borrowButton: UIButton?
+    var returnButton: UIButton?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        map = GMSMapView(frame: self.view.frame)
+        map = GMSMapView()
         
         map!.camera = GMSCameraPosition.cameraWithLatitude(60.1699, longitude: 24.9384, zoom: 13.0)
         map!.myLocationEnabled = true
         
         self.view.addSubview(map!)
+        
+        let borrowButton = UIButton()
+        self.borrowButton = borrowButton
+        borrowButton.addTarget(self, action: #selector(self.startBorrowing), forControlEvents: .TouchUpInside)
+        borrowButton.backgroundColor = UIColor.whiteColor()
+        borrowButton.translatesAutoresizingMaskIntoConstraints = false
+        borrowButton.setTitle("LAINAAN", forState: .Normal)
+        borrowButton.setTitleColor(UIColor.blackColor(), forState: .Normal)
+        
+        self.view.addSubview(borrowButton)
+        
+        let returnButton = UIButton()
+        self.returnButton = returnButton
+        returnButton.addTarget(self, action: #selector(self.startReturning), forControlEvents: .TouchUpInside)
+        returnButton.backgroundColor = UIColor.grayColor()
+        
+        returnButton.translatesAutoresizingMaskIntoConstraints = false
+        returnButton.setTitle("PALAUTAN", forState: .Normal)
+        returnButton.setTitleColor(UIColor.blackColor(), forState: .Normal)
+        
+        self.view.addSubview(returnButton)
+        
+        map!.translatesAutoresizingMaskIntoConstraints = false
+        map!.bottomAnchor.constraintEqualToAnchor(bottomLayoutGuide.topAnchor, constant: -75.0).active = true
+        map!.topAnchor.constraintEqualToAnchor(view.topAnchor).active = true
+        map!.leftAnchor.constraintEqualToAnchor(view.leftAnchor).active = true
+        map!.rightAnchor.constraintEqualToAnchor(view.rightAnchor).active = true
+        
+        borrowButton.topAnchor.constraintEqualToAnchor(map!.bottomAnchor).active = true
+        borrowButton.bottomAnchor.constraintEqualToAnchor(view.bottomAnchor).active = true
+        borrowButton.leftAnchor.constraintEqualToAnchor(view.leftAnchor).active = true
+        
+        returnButton.topAnchor.constraintEqualToAnchor(map!.bottomAnchor).active = true
+        returnButton.bottomAnchor.constraintEqualToAnchor(view.bottomAnchor).active = true
+        returnButton.rightAnchor.constraintEqualToAnchor(view.rightAnchor).active = true
+        returnButton.leftAnchor.constraintEqualToAnchor(borrowButton.rightAnchor).active = true
+        borrowButton.widthAnchor.constraintEqualToAnchor(returnButton.widthAnchor).active = true
         
         loadStationData()
         
@@ -33,7 +72,25 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             locationManager.delegate = self
             locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
             locationManager.startUpdatingLocation()
+            
+            if let loc = locationManager.location {
+                locationManager(locationManager, didUpdateLocations: [loc])
+            }
         }
+    }
+    
+    func startBorrowing() {
+        self.borrowing = true
+        self.redrawStations()
+        returnButton!.backgroundColor = UIColor.grayColor()
+        borrowButton!.backgroundColor = UIColor.whiteColor()
+    }
+    
+    func startReturning() {
+        self.borrowing = false
+        self.redrawStations()
+        borrowButton!.backgroundColor = UIColor.grayColor()
+        returnButton!.backgroundColor = UIColor.whiteColor()
     }
     
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -71,7 +128,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
                     let stations = obj["bikeRentalStations"]
                     if stations is NSArray {
                         self.stations = (stations as! NSArray).map { Station.parse($0) }.filter { $0 != nil }.map { $0! }
-                        self.updateStations()
+                        self.redrawStations()
                     }
                 } catch let err {
                     print(err)
@@ -82,23 +139,25 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         task.resume()
     }
     
-    func updateStations() {
+    func redrawStations() {
         dispatch_async(dispatch_get_main_queue(), {
             self.map!.clear()
             self.stations.forEach { (station) -> Void in
                 let coords = CLLocationCoordinate2DMake(station.lat, station.lon)
                 let marker = GMSMarker(position: coords)
-                marker.iconView = self.createMarkerIcon(station)
+                marker.icon = self.createMarkerIcon(station)
                 marker.map = self.map!
 
             }
         })
     }
     
-    func createMarkerIcon(station: Station) -> UIView {
+    func createMarkerIcon(station: Station) -> UIImage {
         let width:Double = 20
         let height:Double = 30
         let label = UIView(frame: CGRect(x: 0, y: 0, width: width, height: height))
+        label.opaque = false
+        label.backgroundColor = UIColor.clearColor()
         let markerPath = UIBezierPath()
         markerPath.moveToPoint(CGPoint(x: width / 2.0, y: height))
         markerPath.addCurveToPoint(CGPoint(x: 0, y: width / 2.0), controlPoint1: CGPoint(x: 0, y: 7.0 * width / 8.0), controlPoint2: CGPoint(x: 0, y: 5.0 * width / 8.0))
@@ -129,9 +188,36 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         let text = UILabel(frame: label.frame)
         text.text = String(amount)
         text.textAlignment = .Center
+        text.font = text.font.fontWithSize(10.0)
         
         label.addSubview(text)
-        return label
+
+        let foregroundText = UILabel(frame: label.frame)
+        foregroundText.text = String(amount)
+        foregroundText.textColor = UIColor.whiteColor()
+        foregroundText.textAlignment = .Center
+        foregroundText.font = foregroundText.font.fontWithSize(10.0)
+        let textMask = CAShapeLayer()
+        textMask.path = mask.path
+        foregroundText.layer.mask = textMask
+        
+        label.addSubview(foregroundText)
+
+        return viewToImage(label)
+    }
+    
+    func viewToImage(view: UIView) -> UIImage {
+        let size = CGSize(width: view.bounds.size.width + 10.0, height: view.bounds.size.height + 10.0)
+        UIGraphicsBeginImageContextWithOptions(size, view.opaque, 0.0)
+        CGContextSetShadow(UIGraphicsGetCurrentContext(), CGSize(width: 0, height: 4), 8.0)
+        
+        let rect = CGRect(x: 5.0, y: 0.0, width: view.bounds.width, height: view.bounds.height)
+        view.drawViewHierarchyInRect(rect, afterScreenUpdates: true)
+        
+        let img = UIGraphicsGetImageFromCurrentImageContext()
+        
+        UIGraphicsEndImageContext()
+        return img
     }
 
 }
