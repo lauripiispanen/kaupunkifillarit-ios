@@ -19,6 +19,9 @@ class FillariDataSource {
         print("Reloading station data...")
         let task = NSURLSession.sharedSession().dataTaskWithURL(API!) {
             (data, response, error) -> Void in
+            if data == nil {
+                return
+            }
             do {
                 let obj = try NSJSONSerialization.JSONObjectWithData(data!, options: .MutableContainers) as! NSDictionary
                 let stations = obj["bikeRentalStations"]
