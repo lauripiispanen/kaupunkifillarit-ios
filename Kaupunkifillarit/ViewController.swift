@@ -15,9 +15,12 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     var map: MKMapView?
     let dataSource = FillariDataSource()
     var mapHasLocatedUser = false
+    let locationManager = CLLocationManager()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        locationManager.requestWhenInUseAuthorization()
+
         map = MKMapView()
         map?.delegate = self
         
