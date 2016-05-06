@@ -9,12 +9,12 @@
 import UIKit
 import MapKit
 
-class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
+class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, FillariDataSourceDelegate {
     
-    let API = NSURL(string: "http://kaupunkifillarit.fi/api/stations")
+    
     var map: MKMapView?
     let locationManager = CLLocationManager()
-    var stations = Array<Station>()
+    let dataSource = FillariDataSource()
     var borrowing = true
     var borrowButton: UIButton?
     var returnButton: UIButton?
@@ -26,6 +26,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         super.viewDidLoad()
         map = MKMapView()
         map?.delegate = self
+        
+        dataSource.delegate = self
         
         
         //map!.camera = GMSCameraPosition.cameraWithLatitude(60.1699, longitude: 24.9384, zoom: 13.0)
@@ -111,7 +113,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         returnButton.leftAnchor.constraintEqualToAnchor(borrowButton.rightAnchor).active = true
         borrowButton.widthAnchor.constraintEqualToAnchor(returnButton.widthAnchor).active = true
         
-        startRefresh()
+        dataSource.startRefresh()
         
         self.locationManager.requestWhenInUseAuthorization()
         
@@ -123,11 +125,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
             syncLocation()
         }
     }
-    
-    func startRefresh() {
-        NSTimer.scheduledTimerWithTimeInterval(60.0, target: self, selector: #selector(loadStationData), userInfo: nil, repeats: true).fire()
-    }
-    
+        
     func syncLocation() {
         if let loc = locationManager.location {
             locationManager(locationManager, didUpdateLocations: [loc])
@@ -136,7 +134,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     
     func startBorrowing() {
         self.borrowing = true
-        self.redrawStations()
+        self.redrawStations(dataSource.stations)
         returnButton!.backgroundColor = UIColor.grayColor()
         borrowButton!.backgroundColor = UIColor.whiteColor()
         syncLocation()
@@ -144,7 +142,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     
     func startReturning() {
         self.borrowing = false
-        self.redrawStations()
+        self.redrawStations(dataSource.stations)
         borrowButton!.backgroundColor = UIColor.grayColor()
         returnButton!.backgroundColor = UIColor.whiteColor()
         syncLocation()
@@ -152,7 +150,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locationManager.location,
-           let station = nearestStation(location, borrowing: borrowing) {
+           let station = dataSource.nearestStation(location, borrowing: borrowing) {
             nearestStationText!.text = station.name
             nearestStationDistance!.text = String(format: "%1.0fm", distance(location)(station))
             nearestStationCount!.text = String(format: "%d kpl", borrowing ? station.bikesAvailable : station.spacesAvailable)
@@ -163,40 +161,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-    
-    func distance(location: CLLocation) -> (Station) -> Double {
-        return {(station: Station) -> Double in
-            return location.distanceFromLocation(CLLocation(latitude: station.lat, longitude: station.lon))
-        }
-    }
-    
-    func nearestStation(location: CLLocation, borrowing: Bool) -> Station? {
-        let distanceTo = distance(location)
-        
-        return stations.filter { borrowing ? $0.bikesAvailable > 0 : $0.spacesAvailable > 0 }.sort({ (station1, station2) -> Bool in
-            distanceTo(station1) < distanceTo(station2)
-        }).first
-    }
-    
-    func loadStationData() {
-        print("Reloading station data...")
-        let task = NSURLSession.sharedSession().dataTaskWithURL(API!) {
-            (data, response, error) -> Void in
-                do {
-                    let obj = try NSJSONSerialization.JSONObjectWithData(data!, options: .MutableContainers) as! NSDictionary
-                    let stations = obj["bikeRentalStations"]
-                    if stations is NSArray {
-                        self.stations = (stations as! NSArray).map { Station.parse($0) }.filter { $0 != nil }.map { $0! }
-                        self.redrawStations()
-                    }
-                } catch let err {
-                    print(err)
-                }
-
-        }
-        
-        task.resume()
     }
     
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
@@ -218,8 +182,14 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         return nil
     }
     
-    func redrawStations() {
-        let markers = self.stations.map { (station) -> (Station, UIImage) in
+    
+    func updatedStationData(stations: [Station]) {
+        self.redrawStations(stations)
+    }
+    
+    
+    func redrawStations(stations: [Station]) {
+        let markers = stations.map { (station) -> (Station, UIImage) in
             return (station, self.createMarkerIcon(station))
         }
         dispatch_async(dispatch_get_main_queue(), {
@@ -300,29 +270,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         return img
     }
 
-}
-
-struct Station {
-    let spacesAvailable: Int
-    let bikesAvailable: Int
-    let id: String
-    let lat: Double
-    let lon: Double
-    let name: String
-    
-    static func parse(obj: AnyObject) -> Station? {
-        if obj is Dictionary<String, AnyObject> {
-            if let spacesAvailable = obj["spacesAvailable"] as? Int,
-               let bikesAvailable = obj["bikesAvailable"] as? Int,
-               let id = obj["id"] as? String,
-               let lat = obj["lat"] as? Double,
-               let lon = obj["lon"] as? Double,
-               let name = obj["name"] as? String {
-                return Station(spacesAvailable: spacesAvailable, bikesAvailable: bikesAvailable, id: id, lat: lat, lon: lon, name: name)
-            }
-        }
-        return nil
-    }
 }
 
 class StationAnnotation: MKPointAnnotation {
