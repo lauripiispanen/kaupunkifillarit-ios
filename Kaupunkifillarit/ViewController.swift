@@ -100,6 +100,14 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
                 self.map?.addAnnotation(annotation)
             }
         })
-    }        
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        let tracker = GAI.sharedInstance().defaultTracker
+        tracker.set(kGAIScreenName, value: "map")
+        
+        let builder = GAIDictionaryBuilder.createScreenView()
+        tracker.send(builder.build() as [NSObject : AnyObject])
+    }
 
 }

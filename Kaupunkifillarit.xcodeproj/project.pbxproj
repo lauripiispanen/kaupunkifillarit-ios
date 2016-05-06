@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2027E00B1CDD2B3D00704C27 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2027E00A1CDD2B3D00704C27 /* GoogleService-Info.plist */; };
 		203CB5ED1CDC990B00E20556 /* FillariDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203CB5EC1CDC990B00E20556 /* FillariDataSource.swift */; };
 		203CB5F11CDC9FC400E20556 /* StationAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203CB5F01CDC9FC400E20556 /* StationAnnotation.swift */; };
 		20566B211CDA5E2C00DD9071 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20566B201CDA5E2C00DD9071 /* AppDelegate.swift */; };
@@ -14,10 +15,12 @@
 		20566B261CDA5E2C00DD9071 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20566B241CDA5E2C00DD9071 /* Main.storyboard */; };
 		20566B281CDA5E2C00DD9071 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 20566B271CDA5E2C00DD9071 /* Assets.xcassets */; };
 		20566B2B1CDA5E2C00DD9071 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20566B291CDA5E2C00DD9071 /* LaunchScreen.storyboard */; };
+		841DA47CCAC67B856ED5F4B3 /* Pods_Kaupunkifillarit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B76BFA162CC96D9157F4BE11 /* Pods_Kaupunkifillarit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		202152AF1CDA60F600EAF572 /* Kaupunkifillarit-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Kaupunkifillarit-Bridging-Header.h"; sourceTree = "<group>"; };
+		2027E00A1CDD2B3D00704C27 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		203CB5EC1CDC990B00E20556 /* FillariDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FillariDataSource.swift; sourceTree = "<group>"; };
 		203CB5F01CDC9FC400E20556 /* StationAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StationAnnotation.swift; sourceTree = "<group>"; };
 		20566B1D1CDA5E2C00DD9071 /* Kaupunkifillarit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Kaupunkifillarit.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -27,6 +30,9 @@
 		20566B271CDA5E2C00DD9071 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		20566B2A1CDA5E2C00DD9071 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		20566B2C1CDA5E2C00DD9071 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		845CBC98CFFBCF63546F22B2 /* Pods-Kaupunkifillarit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kaupunkifillarit.release.xcconfig"; path = "Pods/Target Support Files/Pods-Kaupunkifillarit/Pods-Kaupunkifillarit.release.xcconfig"; sourceTree = "<group>"; };
+		B76BFA162CC96D9157F4BE11 /* Pods_Kaupunkifillarit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Kaupunkifillarit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F483AC700C08DBA8367F9252 /* Pods-Kaupunkifillarit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kaupunkifillarit.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Kaupunkifillarit/Pods-Kaupunkifillarit.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -34,6 +40,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				841DA47CCAC67B856ED5F4B3 /* Pods_Kaupunkifillarit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -43,9 +50,11 @@
 		20566B141CDA5E2C00DD9071 = {
 			isa = PBXGroup;
 			children = (
+				2027E00A1CDD2B3D00704C27 /* GoogleService-Info.plist */,
 				20566B1F1CDA5E2C00DD9071 /* Kaupunkifillarit */,
 				20566B1E1CDA5E2C00DD9071 /* Products */,
 				6E6E7B9AB35B7A957B32B0E9 /* Frameworks */,
+				22951D75C1519EFD140FBBD1 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -73,9 +82,19 @@
 			path = Kaupunkifillarit;
 			sourceTree = "<group>";
 		};
+		22951D75C1519EFD140FBBD1 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F483AC700C08DBA8367F9252 /* Pods-Kaupunkifillarit.debug.xcconfig */,
+				845CBC98CFFBCF63546F22B2 /* Pods-Kaupunkifillarit.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		6E6E7B9AB35B7A957B32B0E9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B76BFA162CC96D9157F4BE11 /* Pods_Kaupunkifillarit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -87,9 +106,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 20566B2F1CDA5E2C00DD9071 /* Build configuration list for PBXNativeTarget "Kaupunkifillarit" */;
 			buildPhases = (
+				7CA47F2D6571395F09EF4F79 /* Check Pods Manifest.lock */,
 				20566B191CDA5E2C00DD9071 /* Sources */,
 				20566B1A1CDA5E2C00DD9071 /* Frameworks */,
 				20566B1B1CDA5E2C00DD9071 /* Resources */,
+				A61B37E0234A03D233C3D2BA /* Embed Pods Frameworks */,
+				2ACC9DE3974CB1A6E82D96C9 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -140,12 +162,61 @@
 			buildActionMask = 2147483647;
 			files = (
 				20566B2B1CDA5E2C00DD9071 /* LaunchScreen.storyboard in Resources */,
+				2027E00B1CDD2B3D00704C27 /* GoogleService-Info.plist in Resources */,
 				20566B281CDA5E2C00DD9071 /* Assets.xcassets in Resources */,
 				20566B261CDA5E2C00DD9071 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2ACC9DE3974CB1A6E82D96C9 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Kaupunkifillarit/Pods-Kaupunkifillarit-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7CA47F2D6571395F09EF4F79 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		A61B37E0234A03D233C3D2BA /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Kaupunkifillarit/Pods-Kaupunkifillarit-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		20566B191CDA5E2C00DD9071 /* Sources */ = {
@@ -268,6 +339,7 @@
 		};
 		20566B301CDA5E2C00DD9071 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F483AC700C08DBA8367F9252 /* Pods-Kaupunkifillarit.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -284,6 +356,7 @@
 		};
 		20566B311CDA5E2C00DD9071 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 845CBC98CFFBCF63546F22B2 /* Pods-Kaupunkifillarit.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
