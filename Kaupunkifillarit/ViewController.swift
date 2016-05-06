@@ -23,7 +23,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         dataSource.delegate = self
         
         map!.showsUserLocation = true
-        let region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 60.1699, longitude: 24.9384), span: MKCoordinateSpan(latitudeDelta: 0.025, longitudeDelta: 0.025))
+        let region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 60.1699, longitude: 24.9384), span: MKCoordinateSpan(latitudeDelta: 0.015, longitudeDelta: 0.015))
         
         map!.setRegion(region, animated: false)
         
