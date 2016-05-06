@@ -11,7 +11,7 @@ import MapKit
 
 class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
     
-    let API = NSURL(string: "https://kaupunkifillarit.herokuapp.com/api/stations")
+    let API = NSURL(string: "http://kaupunkifillarit.fi/api/stations")
     var map: MKMapView?
     let locationManager = CLLocationManager()
     var stations = Array<Station>()
