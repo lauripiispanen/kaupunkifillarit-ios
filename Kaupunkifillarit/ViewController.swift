@@ -54,6 +54,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
             } else {
                 pin = MKAnnotationView(annotation: annotation, reuseIdentifier: id)
                 pin?.image = ann.icon
+                pin?.layer.anchorPoint = CGPoint(x: 0.5, y: 1.0)
                 pin?.canShowCallout = false
             }
             return pin

@@ -25,62 +25,46 @@ class StationAnnotation: MKPointAnnotation {
 }
 
 func createMarkerIcon(amount: Int, total: Int) -> UIImage {
-    let width:Double = 20
-    let height:Double = 30
-    let label = UIView(frame: CGRect(x: 0, y: 0, width: width, height: height))
+    let margin:Double = 0
+    let width:Double = 56
+    let height:Double = 40
+    let taper:Double = 5
+    let boxHeight:Double = 30
+    let boxRect = CGRect(x: margin, y: margin, width: width, height: boxHeight)
+    let label = UIView(frame: CGRect(x: 0, y: 0, width: width + (2 * margin), height: height + (2 * margin)))
     label.opaque = false
     label.backgroundColor = UIColor.clearColor()
-    let markerPath = UIBezierPath()
-    markerPath.moveToPoint(CGPoint(x: width / 2.0, y: height))
-    markerPath.addCurveToPoint(CGPoint(x: 0, y: width / 2.0), controlPoint1: CGPoint(x: 0, y: 7.0 * width / 8.0), controlPoint2: CGPoint(x: 0, y: 5.0 * width / 8.0))
-    
-    markerPath.addArcWithCenter(CGPoint(x: width / 2.0, y: width / 2.0), radius: (CGFloat(width) / 2.0), startAngle: CGFloat(M_PI), endAngle: 0, clockwise: true)
-    
-    markerPath.addCurveToPoint(CGPoint(x: width / 2.0, y: height), controlPoint1: CGPoint(x: width, y: 5.0 * width / 8.0), controlPoint2: CGPoint(x: width, y: 7.0 * width / 8.0))
-    
+    let markerPath = UIBezierPath(rect: boxRect)
+    let midpoint = (width + (2 * margin)) / 2.0
+    markerPath.moveToPoint(CGPoint(x: midpoint - taper, y: boxHeight + margin))
+    markerPath.addLineToPoint(CGPoint(x: midpoint, y: height + margin))
+    markerPath.addLineToPoint(CGPoint(x: midpoint + taper, y: boxHeight + margin))
+        
     let markerBackground = CAShapeLayer()
     markerBackground.path = markerPath.CGPath
-    markerBackground.fillColor = UIColor.whiteColor().CGColor
+    markerBackground.fillColor = UIColor(red: 254.0 / 255.0, green: 187.0 / 255.0, blue: 69.0 / 255.0, alpha: 1.0).CGColor
+    markerBackground.shadowColor = UIColor.blackColor().CGColor
+    markerBackground.shadowOffset = CGSize(width: 0.0, height: 2.0)
+    markerBackground.shadowRadius = 4.0
+    markerBackground.shadowOpacity = 0.1
     
     label.layer.addSublayer(markerBackground)
     
-    let markerForeground = CAShapeLayer()
-    markerForeground.path = markerPath.CGPath
-    markerForeground.fillColor = UIColor(red: 74.0 / 255.0, green: 74.0 / 255.0, blue: 74.0 / 255.0, alpha: 1.0).CGColor
-    
-    let consumed = Double(amount) / Double(total)
-    let mask = CAShapeLayer()
-    mask.path = UIBezierPath(rect: CGRect(x: 0, y: height * (1.0 - consumed), width: width, height: height * consumed)).CGPath
-    markerForeground.mask = mask
-    
-    
-    label.layer.addSublayer(markerForeground)
-    
-    let text = UILabel(frame: label.frame)
-    text.text = String(amount)
+    let text = UILabel(frame: boxRect)
+    text.text = String(format: "%d / %d", amount, total)
     text.textAlignment = .Center
-    text.font = text.font.fontWithSize(10.0)
+    text.font = text.font.fontWithSize(12.0)
     
     label.addSubview(text)
-    
-    let foregroundText = UILabel(frame: label.frame)
-    foregroundText.text = String(amount)
-    foregroundText.textColor = UIColor.whiteColor()
-    foregroundText.textAlignment = .Center
-    foregroundText.font = foregroundText.font.fontWithSize(10.0)
-    let textMask = CAShapeLayer()
-    textMask.path = mask.path
-    foregroundText.layer.mask = textMask
-    
-    label.addSubview(foregroundText)
     
     return viewToImage(label)
 }
 
 func viewToImage(view: UIView) -> UIImage {
-    let size = CGSize(width: view.bounds.size.width + 10.0, height: view.bounds.size.height + 10.0)
+    let size = CGSize(width: view.bounds.size.width, height: view.bounds.size.height)
+    
     UIGraphicsBeginImageContextWithOptions(size, view.opaque, 0.0)
-    CGContextSetShadow(UIGraphicsGetCurrentContext(), CGSize(width: 0, height: 4), 8.0)
+    //CGContextSetShadow(UIGraphicsGetCurrentContext(), CGSize(width: 0, height: 4), 8.0)
     
     view.layer.renderInContext(UIGraphicsGetCurrentContext()!)
     
