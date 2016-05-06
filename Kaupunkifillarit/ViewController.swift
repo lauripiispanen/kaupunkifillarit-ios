@@ -18,9 +18,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     var borrowing = true
     var borrowButton: UIButton?
     var returnButton: UIButton?
-    var nearestStationText: UILabel?
-    var nearestStationDistance: UILabel?
-    var nearestStationCount: UILabel?
+    var nearestStationBadge: NearestStationBadge?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,41 +59,15 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         
         self.view.addSubview(returnButton)
         
-        let badge = UIView()
-        badge.translatesAutoresizingMaskIntoConstraints = false
-        let ring = CAShapeLayer()
-        ring.shadowColor = UIColor.blackColor().CGColor
-        ring.shadowRadius = 10.0
-        ring.shadowOpacity = 0.4
-        ring.shadowOffset = CGSize(width: 0, height: 5)
-        ring.path = UIBezierPath(ovalInRect: CGRect(x: 0, y: 0, width: 100, height: 100)).CGPath
-        ring.fillColor = UIColor.whiteColor().CGColor
-        badge.layer.addSublayer(ring)
+        let badge = NearestStationBadge()
+        self.nearestStationBadge = badge
         
-        let nearestStationText = UILabel(frame: CGRect(x: 0, y: 0, width: 100.0, height: 100.0))
-        self.nearestStationText = nearestStationText
-        nearestStationText.textAlignment = .Center
-        nearestStationText.font = nearestStationText.font.fontWithSize(10.0)
-        badge.addSubview(nearestStationText)
+        self.view.addSubview(badge.view)
         
-        let nearestStationDistance = UILabel(frame: CGRect(x: 0, y: 0, width: 100.0, height: 50.0))
-        self.nearestStationDistance = nearestStationDistance
-        nearestStationDistance.textAlignment = .Center
-        nearestStationDistance.font = nearestStationDistance.font.fontWithSize(12.0)
-        badge.addSubview(nearestStationDistance)
-        
-        let nearestStationCount = UILabel(frame: CGRect(x: 0, y: 50.0, width: 100.0, height: 50.0))
-        self.nearestStationCount = nearestStationCount
-        nearestStationCount.textAlignment = .Center
-        nearestStationCount.font = nearestStationCount.font.fontWithSize(12.0)
-        badge.addSubview(nearestStationCount)
-        
-        self.view.addSubview(badge)
-        
-        badge.topAnchor.constraintEqualToAnchor(topLayoutGuide.bottomAnchor, constant: 20.0).active = true
-        badge.widthAnchor.constraintEqualToConstant(100.0).active = true
-        badge.heightAnchor.constraintEqualToAnchor(badge.widthAnchor).active = true
-        badge.centerXAnchor.constraintEqualToAnchor(view.centerXAnchor).active = true
+        badge.view.topAnchor.constraintEqualToAnchor(topLayoutGuide.bottomAnchor, constant: 20.0).active = true
+        badge.view.widthAnchor.constraintEqualToConstant(100.0).active = true
+        badge.view.heightAnchor.constraintEqualToAnchor(badge.view.widthAnchor).active = true
+        badge.view.centerXAnchor.constraintEqualToAnchor(view.centerXAnchor).active = true
         
         map!.translatesAutoresizingMaskIntoConstraints = false
         map!.bottomAnchor.constraintEqualToAnchor(bottomLayoutGuide.topAnchor, constant: -75.0).active = true
@@ -151,10 +123,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locationManager.location,
            let station = dataSource.nearestStation(location, borrowing: borrowing) {
-            nearestStationText!.text = station.name
-            nearestStationDistance!.text = String(format: "%1.0fm", distance(location)(station))
-            nearestStationCount!.text = String(format: "%d kpl", borrowing ? station.bikesAvailable : station.spacesAvailable)
-
+            nearestStationBadge!.setNearestStation(station, distance: distance(location)(station), count: borrowing ? station.bikesAvailable : station.spacesAvailable)
         }
     }
 

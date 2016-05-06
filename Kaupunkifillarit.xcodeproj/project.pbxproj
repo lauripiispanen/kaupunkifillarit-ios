@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		203CB5ED1CDC990B00E20556 /* FillariDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203CB5EC1CDC990B00E20556 /* FillariDataSource.swift */; };
+		203CB5EF1CDC9CE200E20556 /* NearestStationBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203CB5EE1CDC9CE200E20556 /* NearestStationBadge.swift */; };
 		20566B211CDA5E2C00DD9071 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20566B201CDA5E2C00DD9071 /* AppDelegate.swift */; };
 		20566B231CDA5E2C00DD9071 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20566B221CDA5E2C00DD9071 /* ViewController.swift */; };
 		20566B261CDA5E2C00DD9071 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20566B241CDA5E2C00DD9071 /* Main.storyboard */; };
@@ -18,6 +19,7 @@
 /* Begin PBXFileReference section */
 		202152AF1CDA60F600EAF572 /* Kaupunkifillarit-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Kaupunkifillarit-Bridging-Header.h"; sourceTree = "<group>"; };
 		203CB5EC1CDC990B00E20556 /* FillariDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FillariDataSource.swift; sourceTree = "<group>"; };
+		203CB5EE1CDC9CE200E20556 /* NearestStationBadge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NearestStationBadge.swift; sourceTree = "<group>"; };
 		20566B1D1CDA5E2C00DD9071 /* Kaupunkifillarit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Kaupunkifillarit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		20566B201CDA5E2C00DD9071 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		20566B221CDA5E2C00DD9071 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -66,6 +68,7 @@
 				20566B2C1CDA5E2C00DD9071 /* Info.plist */,
 				202152AF1CDA60F600EAF572 /* Kaupunkifillarit-Bridging-Header.h */,
 				203CB5EC1CDC990B00E20556 /* FillariDataSource.swift */,
+				203CB5EE1CDC9CE200E20556 /* NearestStationBadge.swift */,
 			);
 			path = Kaupunkifillarit;
 			sourceTree = "<group>";
@@ -152,6 +155,7 @@
 				203CB5ED1CDC990B00E20556 /* FillariDataSource.swift in Sources */,
 				20566B231CDA5E2C00DD9071 /* ViewController.swift in Sources */,
 				20566B211CDA5E2C00DD9071 /* AppDelegate.swift in Sources */,
+				203CB5EF1CDC9CE200E20556 /* NearestStationBadge.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
