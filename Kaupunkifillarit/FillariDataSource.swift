@@ -11,7 +11,7 @@ import MapKit
 
 class FillariDataSource {
     
-    let API = NSURL(string: "http://kaupunkifillarit.fi/api/stations")
+    let API = NSURL(string: "https://kaupunkifillarit.fi/api/stations")
     var delegate: FillariDataSourceDelegate?
     var stations = Array<Station>()
     
