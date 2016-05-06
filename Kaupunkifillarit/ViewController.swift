@@ -27,14 +27,10 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         
         dataSource.delegate = self
         
-        
-        //map!.camera = GMSCameraPosition.cameraWithLatitude(60.1699, longitude: 24.9384, zoom: 13.0)
         map!.showsUserLocation = true
         let region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 60.1699, longitude: 24.9384), span: MKCoordinateSpan(latitudeDelta: 0.025, longitudeDelta: 0.025))
         
         map!.setRegion(region, animated: false)
-            
-        //map!.myLocationEnabled = true
         
         self.view.addSubview(map!)
         
