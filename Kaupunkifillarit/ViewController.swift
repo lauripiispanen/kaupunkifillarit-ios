@@ -14,6 +14,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     
     var map: MKMapView?
     let dataSource = FillariDataSource()
+    var mapHasLocatedUser = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,7 +24,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         dataSource.delegate = self
         
         map!.showsUserLocation = true
-        let region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 60.1699, longitude: 24.9384), span: MKCoordinateSpan(latitudeDelta: 0.015, longitudeDelta: 0.015))
+        let region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 60.1699, longitude: 24.9384), span: MKCoordinateSpan(latitudeDelta: 0.025, longitudeDelta: 0.025))
         
         map!.setRegion(region, animated: false)
         
@@ -41,6 +42,20 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func mapView(mapView: MKMapView, didUpdateUserLocation userLocation: MKUserLocation) {
+        if !mapHasLocatedUser && isWithinDesiredMapBounds(userLocation.coordinate) {
+            mapView.setRegion(MKCoordinateRegion(center: userLocation.coordinate, span: MKCoordinateSpan(latitudeDelta: 0.015, longitudeDelta: 0.015)), animated: true)
+            mapHasLocatedUser = true
+        }
+    }
+    
+    func isWithinDesiredMapBounds(coords: CLLocationCoordinate2D) -> Bool {
+        return coords.latitude > 60.151568 &&
+               coords.latitude < 60.194072 &&
+               coords.longitude > 24.903618 &&
+               coords.longitude < 24.984335
     }
     
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
