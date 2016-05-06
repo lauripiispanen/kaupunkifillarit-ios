@@ -130,16 +130,15 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
         if annotation is StationAnnotation {
-            let icon = (annotation as! StationAnnotation).icon
-            let station = (annotation as! StationAnnotation).station
+            let ann = (annotation as! StationAnnotation)
+            let id = String(format: "station-%d/%d", ann.amount, ann.total)
             
-            var pin = mapView.dequeueReusableAnnotationViewWithIdentifier(station.id)
+            var pin = mapView.dequeueReusableAnnotationViewWithIdentifier(id)
             if pin != nil {
-                pin?.annotation = annotation
-                pin?.image = icon
+                return pin
             } else {
-                pin = MKAnnotationView(annotation: annotation, reuseIdentifier: station.id)
-                pin?.image = icon
+                pin = MKAnnotationView(annotation: annotation, reuseIdentifier: id)
+                pin?.image = ann.icon
                 pin?.canShowCallout = false
             }
             return pin
@@ -154,95 +153,21 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     
     
     func redrawStations(stations: [Station]) {
-        let markers = stations.map { (station) -> (Station, UIImage) in
-            return (station, self.createMarkerIcon(station))
+        let markers = stations.map { (station) -> StationAnnotation in
+            
+            let amount = borrowing ? station.bikesAvailable : station.spacesAvailable
+            let total = station.bikesAvailable + station.spacesAvailable
+            
+            let annotation = StationAnnotation(amount: amount, total: total)
+            annotation.coordinate = CLLocationCoordinate2DMake(station.lat, station.lon)
+            return annotation
         }
         dispatch_async(dispatch_get_main_queue(), {
             self.map!.removeAnnotations(self.map!.annotations)
-            markers.forEach { (stationAndMarker) -> Void in
-                let station = stationAndMarker.0
-                let annotation = StationAnnotation(station, icon: stationAndMarker.1)
-                annotation.coordinate = CLLocationCoordinate2DMake(station.lat, station.lon)
+            markers.forEach { (annotation) -> Void in
                 self.map?.addAnnotation(annotation)
             }
         })
-    }
-    
-    func createMarkerIcon(station: Station) -> UIImage {
-        let width:Double = 20
-        let height:Double = 30
-        let label = UIView(frame: CGRect(x: 0, y: 0, width: width, height: height))
-        label.opaque = false
-        label.backgroundColor = UIColor.clearColor()
-        let markerPath = UIBezierPath()
-        markerPath.moveToPoint(CGPoint(x: width / 2.0, y: height))
-        markerPath.addCurveToPoint(CGPoint(x: 0, y: width / 2.0), controlPoint1: CGPoint(x: 0, y: 7.0 * width / 8.0), controlPoint2: CGPoint(x: 0, y: 5.0 * width / 8.0))
-        
-        markerPath.addArcWithCenter(CGPoint(x: width / 2.0, y: width / 2.0), radius: (CGFloat(width) / 2.0), startAngle: CGFloat(M_PI), endAngle: 0, clockwise: true)
-        
-        markerPath.addCurveToPoint(CGPoint(x: width / 2.0, y: height), controlPoint1: CGPoint(x: width, y: 5.0 * width / 8.0), controlPoint2: CGPoint(x: width, y: 7.0 * width / 8.0))
-        
-        let markerBackground = CAShapeLayer()
-        markerBackground.path = markerPath.CGPath
-        markerBackground.fillColor = UIColor.whiteColor().CGColor
-        
-        label.layer.addSublayer(markerBackground)
-        
-        let markerForeground = CAShapeLayer()
-        markerForeground.path = markerPath.CGPath
-        markerForeground.fillColor = UIColor(red: 74.0 / 255.0, green: 74.0 / 255.0, blue: 74.0 / 255.0, alpha: 1.0).CGColor
-        
-        let amount = borrowing ? station.bikesAvailable : station.spacesAvailable
-        let size = Double(amount) / Double(station.bikesAvailable + station.spacesAvailable)
-        let mask = CAShapeLayer()
-        mask.path = UIBezierPath(rect: CGRect(x: 0, y: height * (1.0 - size), width: width, height: height * size)).CGPath
-        markerForeground.mask = mask
+    }        
 
-        
-        label.layer.addSublayer(markerForeground)
-        
-        let text = UILabel(frame: label.frame)
-        text.text = String(amount)
-        text.textAlignment = .Center
-        text.font = text.font.fontWithSize(10.0)
-        
-        label.addSubview(text)
-
-        let foregroundText = UILabel(frame: label.frame)
-        foregroundText.text = String(amount)
-        foregroundText.textColor = UIColor.whiteColor()
-        foregroundText.textAlignment = .Center
-        foregroundText.font = foregroundText.font.fontWithSize(10.0)
-        let textMask = CAShapeLayer()
-        textMask.path = mask.path
-        foregroundText.layer.mask = textMask
-        
-        label.addSubview(foregroundText)
-
-        return viewToImage(label)
-    }
-    
-    func viewToImage(view: UIView) -> UIImage {
-        let size = CGSize(width: view.bounds.size.width + 10.0, height: view.bounds.size.height + 10.0)
-        UIGraphicsBeginImageContextWithOptions(size, view.opaque, 0.0)
-        CGContextSetShadow(UIGraphicsGetCurrentContext(), CGSize(width: 0, height: 4), 8.0)
-        
-        view.layer.renderInContext(UIGraphicsGetCurrentContext()!)
-        
-        let img = UIGraphicsGetImageFromCurrentImageContext()
-        
-        UIGraphicsEndImageContext()
-        return img
-    }
-
-}
-
-class StationAnnotation: MKPointAnnotation {
-    let station:Station
-    let icon:UIImage
-    init(_ station: Station, icon: UIImage) {
-        self.station = station
-        self.icon = icon
-        super.init()
-    }
 }
