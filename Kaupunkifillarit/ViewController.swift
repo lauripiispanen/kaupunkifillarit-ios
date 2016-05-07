@@ -95,10 +95,11 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
             return annotation
         }
         dispatch_async(dispatch_get_main_queue(), {
-            self.map!.removeAnnotations(self.map!.annotations)
+            let old_annotations = self.map!.annotations
             markers.forEach { (annotation) -> Void in
                 self.map?.addAnnotation(annotation)
             }
+            self.map!.removeAnnotations(old_annotations)
         })
     }
     
