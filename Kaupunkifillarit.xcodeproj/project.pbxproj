@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		2027E00B1CDD2B3D00704C27 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2027E00A1CDD2B3D00704C27 /* GoogleService-Info.plist */; };
-		2027E00D1CDE156C00704C27 /* kaupunkifillarit-logo-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 2027E00C1CDE156C00704C27 /* kaupunkifillarit-logo-2.png */; };
 		203CB5ED1CDC990B00E20556 /* FillariDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203CB5EC1CDC990B00E20556 /* FillariDataSource.swift */; };
 		203CB5F11CDC9FC400E20556 /* StationAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203CB5F01CDC9FC400E20556 /* StationAnnotation.swift */; };
 		20566B211CDA5E2C00DD9071 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20566B201CDA5E2C00DD9071 /* AppDelegate.swift */; };
@@ -16,6 +15,7 @@
 		20566B261CDA5E2C00DD9071 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20566B241CDA5E2C00DD9071 /* Main.storyboard */; };
 		20566B281CDA5E2C00DD9071 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 20566B271CDA5E2C00DD9071 /* Assets.xcassets */; };
 		20566B2B1CDA5E2C00DD9071 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20566B291CDA5E2C00DD9071 /* LaunchScreen.storyboard */; };
+		209D2A471CE26B370083DD18 /* kaupunkifillarit-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 209D2A461CE26B370083DD18 /* kaupunkifillarit-logo.png */; };
 		20F26A5A1CDE1DD200C2109D /* kaupunkifillarit-text.png in Resources */ = {isa = PBXBuildFile; fileRef = 20F26A591CDE1DD200C2109D /* kaupunkifillarit-text.png */; };
 		841DA47CCAC67B856ED5F4B3 /* Pods_Kaupunkifillarit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B76BFA162CC96D9157F4BE11 /* Pods_Kaupunkifillarit.framework */; };
 /* End PBXBuildFile section */
@@ -23,7 +23,6 @@
 /* Begin PBXFileReference section */
 		202152AF1CDA60F600EAF572 /* Kaupunkifillarit-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Kaupunkifillarit-Bridging-Header.h"; sourceTree = "<group>"; };
 		2027E00A1CDD2B3D00704C27 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		2027E00C1CDE156C00704C27 /* kaupunkifillarit-logo-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "kaupunkifillarit-logo-2.png"; sourceTree = "<group>"; };
 		203CB5EC1CDC990B00E20556 /* FillariDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FillariDataSource.swift; sourceTree = "<group>"; };
 		203CB5F01CDC9FC400E20556 /* StationAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StationAnnotation.swift; sourceTree = "<group>"; };
 		20566B1D1CDA5E2C00DD9071 /* Kaupunkifillarit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Kaupunkifillarit.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -33,6 +32,7 @@
 		20566B271CDA5E2C00DD9071 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		20566B2A1CDA5E2C00DD9071 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		20566B2C1CDA5E2C00DD9071 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		209D2A461CE26B370083DD18 /* kaupunkifillarit-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "kaupunkifillarit-logo.png"; sourceTree = "<group>"; };
 		20F26A591CDE1DD200C2109D /* kaupunkifillarit-text.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "kaupunkifillarit-text.png"; sourceTree = "<group>"; };
 		845CBC98CFFBCF63546F22B2 /* Pods-Kaupunkifillarit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kaupunkifillarit.release.xcconfig"; path = "Pods/Target Support Files/Pods-Kaupunkifillarit/Pods-Kaupunkifillarit.release.xcconfig"; sourceTree = "<group>"; };
 		B76BFA162CC96D9157F4BE11 /* Pods_Kaupunkifillarit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Kaupunkifillarit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -73,8 +73,8 @@
 		20566B1F1CDA5E2C00DD9071 /* Kaupunkifillarit */ = {
 			isa = PBXGroup;
 			children = (
+				209D2A461CE26B370083DD18 /* kaupunkifillarit-logo.png */,
 				20F26A591CDE1DD200C2109D /* kaupunkifillarit-text.png */,
-				2027E00C1CDE156C00704C27 /* kaupunkifillarit-logo-2.png */,
 				20566B201CDA5E2C00DD9071 /* AppDelegate.swift */,
 				20566B221CDA5E2C00DD9071 /* ViewController.swift */,
 				20566B241CDA5E2C00DD9071 /* Main.storyboard */,
@@ -167,9 +167,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2027E00D1CDE156C00704C27 /* kaupunkifillarit-logo-2.png in Resources */,
 				20F26A5A1CDE1DD200C2109D /* kaupunkifillarit-text.png in Resources */,
 				20566B2B1CDA5E2C00DD9071 /* LaunchScreen.storyboard in Resources */,
+				209D2A471CE26B370083DD18 /* kaupunkifillarit-logo.png in Resources */,
 				2027E00B1CDD2B3D00704C27 /* GoogleService-Info.plist in Resources */,
 				20566B281CDA5E2C00DD9071 /* Assets.xcassets in Resources */,
 				20566B261CDA5E2C00DD9071 /* Main.storyboard in Resources */,

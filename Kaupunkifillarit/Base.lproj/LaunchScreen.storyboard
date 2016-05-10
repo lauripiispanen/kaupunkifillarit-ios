@@ -18,7 +18,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" image="kaupunkifillarit-logo-2.png" translatesAutoresizingMaskIntoConstraints="NO" id="gI5-U8-T9j">
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="kaupunkifillarit-logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="gI5-U8-T9j">
                                 <rect key="frame" x="150" y="150" width="300" height="300"/>
                                 <accessibility key="accessibilityConfiguration">
                                     <accessibilityTraits key="traits" image="YES" notEnabled="YES"/>
@@ -34,7 +34,7 @@
                                 </constraints>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.99607843137254903" green="0.74117647058823533" blue="0.098039215686274508" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="gI5-U8-T9j" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="0IC-it-wxW"/>
@@ -52,7 +52,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="kaupunkifillarit-logo-2.png" width="786" height="760"/>
+        <image name="kaupunkifillarit-logo.png" width="1024" height="1024"/>
         <image name="kaupunkifillarit-text.png" width="1024" height="250"/>
     </resources>
 </document>
