@@ -40,13 +40,23 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         map!.rightAnchor.constraintEqualToAnchor(view.rightAnchor).active = true
     }
 
-    func allowMapToRelocate() {
+    func appReturnedFromBackground() {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(appEnteredBackground), name:
+            UIApplicationDidEnterBackgroundNotification, object: nil)
+        dataSource.startRefresh()
+    }
+
+    func appEnteredBackground() {
         self.mapHasLocatedUser = false
+        dataSource.stopRefresh()
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(appReturnedFromBackground), name: UIApplicationDidBecomeActiveNotification, object: nil)
     }
 
     override func viewDidAppear(animated: Bool) {
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(allowMapToRelocate), name: UIApplicationDidBecomeActiveNotification, object: nil)
-        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(appEnteredBackground), name:
+            UIApplicationDidEnterBackgroundNotification, object: nil)
         dataSource.startRefresh()
     }
 
@@ -114,7 +124,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
             self.map!.removeAnnotations(old_annotations)
         })
     }
-    
+
     override func viewWillAppear(animated: Bool) {
         let tracker = GAI.sharedInstance().defaultTracker
         tracker.set(kGAIScreenName, value: "map")

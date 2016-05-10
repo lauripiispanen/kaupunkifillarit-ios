@@ -14,6 +14,7 @@ class FillariDataSource {
     let API = NSURL(string: "https://kaupunkifillarit.fi/api/stations")
     var delegate: FillariDataSourceDelegate?
     var stations = Array<Station>()
+    var timer:NSTimer?
     
     @objc func loadData() {
         print("Reloading station data...")
@@ -39,7 +40,14 @@ class FillariDataSource {
     }
     
     func startRefresh() {
-        NSTimer.scheduledTimerWithTimeInterval(60.0, target: self, selector: #selector(loadData), userInfo: nil, repeats: true).fire()
+        print("starting station data refresh job")
+        timer = NSTimer.scheduledTimerWithTimeInterval(60.0, target: self, selector: #selector(loadData), userInfo: nil, repeats: true)
+        timer?.fire()
+    }
+
+    func stopRefresh() {
+        print("stopped station data refresh job")
+        timer?.invalidate()
     }
     
     func nearestStation(location: CLLocation, borrowing: Bool) -> Station? {
