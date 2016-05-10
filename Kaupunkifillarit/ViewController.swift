@@ -38,8 +38,20 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         map!.topAnchor.constraintEqualToAnchor(view.topAnchor).active = true
         map!.leftAnchor.constraintEqualToAnchor(view.leftAnchor).active = true
         map!.rightAnchor.constraintEqualToAnchor(view.rightAnchor).active = true
+    }
+
+    func allowMapToRelocate() {
+        self.mapHasLocatedUser = false
+    }
+
+    override func viewDidAppear(animated: Bool) {
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(allowMapToRelocate), name: UIApplicationDidBecomeActiveNotification, object: nil)
         
         dataSource.startRefresh()
+    }
+
+    override func viewDidDisappear(animated: Bool) {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
 
     override func didReceiveMemoryWarning() {
