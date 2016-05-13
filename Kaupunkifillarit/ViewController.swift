@@ -70,7 +70,11 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         infoView.translatesAutoresizingMaskIntoConstraints = false
         infoView.topAnchor.constraintEqualToAnchor(view.topAnchor).active = true
         infoView.bottomAnchor.constraintEqualToAnchor(view.bottomAnchor).active = true
-        infoView.widthAnchor.constraintEqualToAnchor(view.widthAnchor, multiplier: 0.75).active = true
+        let widthConstraint = infoView.widthAnchor.constraintEqualToAnchor(view.widthAnchor, multiplier: 0.75)
+        widthConstraint.priority = 900
+        widthConstraint.active = true
+        infoView.widthAnchor.constraintLessThanOrEqualToConstant(300).active = true
+
         infoViewRightAnchor = infoView.rightAnchor.constraintEqualToAnchor(view.rightAnchor)
         infoViewRightAnchor?.active = false
         infoViewLeftAnchor = infoView.leftAnchor.constraintEqualToAnchor(view.rightAnchor)
@@ -87,10 +91,45 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         
         image.translatesAutoresizingMaskIntoConstraints = false
         image.topAnchor.constraintEqualToAnchor(infoView.topAnchor, constant: 20).active = true
-        image.leftAnchor.constraintEqualToAnchor(infoView.leftAnchor, constant: 20).active = true
-        image.rightAnchor.constraintEqualToAnchor(infoView.rightAnchor, constant: -20).active = true
+        image.leftAnchor.constraintEqualToAnchor(infoView.leftAnchor, constant: 30).active = true
+        image.rightAnchor.constraintEqualToAnchor(infoView.rightAnchor, constant: -30).active = true
         image.heightAnchor.constraintEqualToAnchor(image.widthAnchor).active = true
         
+        let title = UILabel()
+        title.text = "KAUPUNKI-\nFILLARIT.FI"
+        title.numberOfLines = 0
+        title.font = UIFont(name: "Arial-BoldMT", size: 32.0)
+        title.textColor = UIColor(red: 51.0 / 255.0, green: 51.0 / 255.0, blue: 51.0 / 255.0, alpha: 1.0)
+        
+        infoView.addSubview(title)
+        
+        title.translatesAutoresizingMaskIntoConstraints = false
+        title.topAnchor.constraintEqualToAnchor(image.bottomAnchor).active = true
+        title.leftAnchor.constraintEqualToAnchor(infoView.leftAnchor, constant: 30).active = true
+        title.rightAnchor.constraintEqualToAnchor(infoView.rightAnchor, constant: -30).active = true
+        
+        let text = UITextView()
+        let html = infoViewTextAsHtml
+        text.attributedText = try? NSAttributedString(html:html)
+        text.scrollEnabled = true
+        text.selectable = true
+        text.editable = false
+        text.linkTextAttributes = [ NSForegroundColorAttributeName: title.textColor ]
+        
+        text.textColor = title.textColor
+        text.backgroundColor = UIColor.clearColor()
+        text.font = UIFont(name: "Arial", size: 12.0)
+        
+        infoView.addSubview(text)
+        
+        text.translatesAutoresizingMaskIntoConstraints = false
+        
+        text.topAnchor.constraintEqualToAnchor(title.bottomAnchor).active = true
+        text.leftAnchor.constraintEqualToAnchor(infoView.leftAnchor, constant: 30).active = true
+        text.rightAnchor.constraintEqualToAnchor(infoView.rightAnchor, constant: -30).active = true
+        text.bottomAnchor.constraintEqualToAnchor(infoView.bottomAnchor).active = true
+        
+
     }
     
     func hamburgerChanged() {
@@ -200,5 +239,23 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         let builder = GAIDictionaryBuilder.createScreenView()
         tracker.send(builder.build() as [NSObject : AnyObject])
     }
+    
+    let infoViewTextAsHtml = "<style type=\"text/css\">a { color: #333333; }</style>" +
+        "<p>Polkupyöräily lisää kaupunkilaisten onnea. Innostuimme <a href=\"http://reaktor.fi/careers/?utm_source=kaupunkifillarit&amp;utm_medium=referral&amp;utm_campaign=kaupunkifillarit_2016\" target=\"_blank\" title=\"Reaktor careers\">Reaktorilla</a> maan mainioista Helsingin kaupunkipyöristä.</p>" +
+        "<p>Kaupunkifillareiden ainoa ongelma on niiden kova suosio. Siispä me kaupunkipyöräilijät, <a href=\"https://twitter.com/sampsakuronen\" target=\"_blank\" title=\"Sampsa Kuronen Twitter\">Sampsa Kuronen</a>, <a href=\"https://twitter.com/albrto\" target=\"_blank\">Antero Päärni</a>, <a href=\"https://twitter.com/lauripiispanen\" target=\"_blank\">Lauri Piispanen</a> ja <a href=\"https://twitter.com/hleinone\" target=\"_blank\">Hannu Leinonen</a>, päätimme vapaa-ajallamme avittaa muita kaupunkilaisia.</p>" +
+        "<p>Pyöriä käyttämään pääsee tosi helposti: <a href=\"https://www.hsl.fi/kaupunkipy%C3%B6r%C3%A4t\" target=\"_blank\">hsl.fi/kaupunkipyörät</a></p>" +
+        "<p><a href=\"https://www.dropbox.com/sh/ni5lq7nu0waqprs/AAD5hdNUydglidjCfhM27zyDa?dl=0\" target=\"_blank\" title=\"Kaupunkifillarit.fi lehdistömateriaalit\">Press kit löytyy täältä.</a></p>" +
+        "<p>Tiedot ovat HSL:n tarjoamaa avointa dataa.</p>"
 
+}
+
+private extension NSAttributedString {
+    convenience init(html:String) throws {
+        guard let data = html.dataUsingEncoding(NSUTF8StringEncoding) else {
+            throw NSError(domain: "Invalid HTML", code: -500, userInfo: nil)
+        }
+        
+        let options = [NSDocumentTypeDocumentAttribute : NSHTMLTextDocumentType, NSCharacterEncodingDocumentAttribute: NSNumber(unsignedInteger:NSUTF8StringEncoding)]
+        try self.init(data: data, options: options, documentAttributes: nil)
+    }
 }

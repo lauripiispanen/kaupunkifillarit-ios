@@ -26,6 +26,7 @@ class LPIAnimatedHamburgerButton: UIControl, LPIAnimatedHamburgerOptions {
     
     var animationTime: Double = 0.3
     var lineWidth: Double = 3.0
+    var lineCap = kCALineCapRound
     var strokeColor: CGColor = UIColor.whiteColor().CGColor
     var originShape: LPIAnimatedHamburgerShape = LPIAnimatedHamburgerDefaultShapes.Hamburger
     var shape: LPIAnimatedHamburgerShape = LPIAnimatedHamburgerDefaultShapes.ArrowRight
@@ -75,6 +76,7 @@ class LPIAnimatedHamburgerButton: UIControl, LPIAnimatedHamburgerOptions {
     private func initLayerSettings(shapeLayer: CAShapeLayer) {
         shapeLayer.lineWidth = CGFloat(lineWidth)
         shapeLayer.strokeColor = strokeColor
+        shapeLayer.lineCap = lineCap
     }
     
     override func layoutSubviews() {
