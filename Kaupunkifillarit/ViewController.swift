@@ -82,7 +82,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     }
     
     private func initInfoView(infoView: UIView) {
-        infoView.backgroundColor = UIColor(red: 254.0 / 255.0, green: 187.0 / 255.0, blue: 69.0 / 255.0, alpha: 1.0)
+        infoView.backgroundColor = UIColor(red: 251.0 / 255.0, green: 188.0 / 255.0, blue: 26.0 / 255.0, alpha: 1.0)
         let image = UIImageView(image: UIImage(named: "kaupunkifillarit-logo.png"))
         infoView.addSubview(image)
         
