@@ -17,7 +17,8 @@
 		20566B2B1CDA5E2C00DD9071 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20566B291CDA5E2C00DD9071 /* LaunchScreen.storyboard */; };
 		2092BB6F1CE44E7400263C58 /* LPIAnimatedHamburgerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2092BB6E1CE44E7400263C58 /* LPIAnimatedHamburgerButton.swift */; };
 		209D2A471CE26B370083DD18 /* kaupunkifillarit-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 209D2A461CE26B370083DD18 /* kaupunkifillarit-logo.png */; };
-		20A690E81CE67939005FBB5F /* LPIAttributedStringBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A690E71CE67939005FBB5F /* LPIAttributedStringBuilder.swift */; };
+		20EB46441CE8D2B70025A8CF /* share-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 20EB46431CE8D2B70025A8CF /* share-icon.png */; };
+		20EB46461CE8EB950025A8CF /* SharingActivityItemSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20EB46451CE8EB950025A8CF /* SharingActivityItemSource.swift */; };
 		20F26A5A1CDE1DD200C2109D /* kaupunkifillarit-text.png in Resources */ = {isa = PBXBuildFile; fileRef = 20F26A591CDE1DD200C2109D /* kaupunkifillarit-text.png */; };
 		841DA47CCAC67B856ED5F4B3 /* Pods_Kaupunkifillarit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B76BFA162CC96D9157F4BE11 /* Pods_Kaupunkifillarit.framework */; };
 /* End PBXBuildFile section */
@@ -36,7 +37,8 @@
 		20566B2C1CDA5E2C00DD9071 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2092BB6E1CE44E7400263C58 /* LPIAnimatedHamburgerButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LPIAnimatedHamburgerButton.swift; sourceTree = "<group>"; };
 		209D2A461CE26B370083DD18 /* kaupunkifillarit-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "kaupunkifillarit-logo.png"; sourceTree = "<group>"; };
-		20A690E71CE67939005FBB5F /* LPIAttributedStringBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LPIAttributedStringBuilder.swift; sourceTree = "<group>"; };
+		20EB46431CE8D2B70025A8CF /* share-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "share-icon.png"; sourceTree = "<group>"; };
+		20EB46451CE8EB950025A8CF /* SharingActivityItemSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharingActivityItemSource.swift; sourceTree = "<group>"; };
 		20F26A591CDE1DD200C2109D /* kaupunkifillarit-text.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "kaupunkifillarit-text.png"; sourceTree = "<group>"; };
 		845CBC98CFFBCF63546F22B2 /* Pods-Kaupunkifillarit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kaupunkifillarit.release.xcconfig"; path = "Pods/Target Support Files/Pods-Kaupunkifillarit/Pods-Kaupunkifillarit.release.xcconfig"; sourceTree = "<group>"; };
 		B76BFA162CC96D9157F4BE11 /* Pods_Kaupunkifillarit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Kaupunkifillarit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -77,6 +79,7 @@
 		20566B1F1CDA5E2C00DD9071 /* Kaupunkifillarit */ = {
 			isa = PBXGroup;
 			children = (
+				20EB46431CE8D2B70025A8CF /* share-icon.png */,
 				209D2A461CE26B370083DD18 /* kaupunkifillarit-logo.png */,
 				20F26A591CDE1DD200C2109D /* kaupunkifillarit-text.png */,
 				20566B201CDA5E2C00DD9071 /* AppDelegate.swift */,
@@ -89,7 +92,7 @@
 				203CB5EC1CDC990B00E20556 /* FillariDataSource.swift */,
 				203CB5F01CDC9FC400E20556 /* StationAnnotation.swift */,
 				2092BB6E1CE44E7400263C58 /* LPIAnimatedHamburgerButton.swift */,
-				20A690E71CE67939005FBB5F /* LPIAttributedStringBuilder.swift */,
+				20EB46451CE8EB950025A8CF /* SharingActivityItemSource.swift */,
 			);
 			path = Kaupunkifillarit;
 			sourceTree = "<group>";
@@ -173,6 +176,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				20EB46441CE8D2B70025A8CF /* share-icon.png in Resources */,
 				20F26A5A1CDE1DD200C2109D /* kaupunkifillarit-text.png in Resources */,
 				20566B2B1CDA5E2C00DD9071 /* LaunchScreen.storyboard in Resources */,
 				209D2A471CE26B370083DD18 /* kaupunkifillarit-logo.png in Resources */,
@@ -237,7 +241,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				20A690E81CE67939005FBB5F /* LPIAttributedStringBuilder.swift in Sources */,
+				20EB46461CE8EB950025A8CF /* SharingActivityItemSource.swift in Sources */,
 				2092BB6F1CE44E7400263C58 /* LPIAnimatedHamburgerButton.swift in Sources */,
 				203CB5ED1CDC990B00E20556 /* FillariDataSource.swift in Sources */,
 				20566B231CDA5E2C00DD9071 /* ViewController.swift in Sources */,

@@ -11,7 +11,6 @@ import MapKit
 
 class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, FillariDataSourceDelegate {
     
-    
     var map: MKMapView?
     let dataSource = FillariDataSource()
     var mapHasLocatedUser = false
@@ -21,6 +20,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     var infoViewRightAnchor:NSLayoutConstraint?
     let hamburger = LPIAnimatedHamburgerButton()
     let mapOverlay = UIView()
+    let infoText = UITextView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -108,28 +108,62 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         title.leftAnchor.constraintEqualToAnchor(infoView.leftAnchor, constant: 30).active = true
         title.rightAnchor.constraintEqualToAnchor(infoView.rightAnchor, constant: -30).active = true
         
-        let text = UITextView()
+        
+        let shareButton = UIImageView(image: UIImage(named: "share-icon.png"))
+        shareButton.userInteractionEnabled = true
+        shareButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.shareApp)))
+        
+        infoView.addSubview(shareButton)
+        shareButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        shareButton.bottomAnchor.constraintEqualToAnchor(infoView.bottomAnchor, constant: -20).active = true
+        shareButton.leftAnchor.constraintEqualToAnchor(infoView.leftAnchor, constant: 30).active = true
+        shareButton.widthAnchor.constraintEqualToConstant(30).active = true
+        shareButton.heightAnchor.constraintEqualToAnchor(shareButton.widthAnchor).active = true
+        
         let html = infoViewTextAsHtml
-        text.attributedText = try? NSAttributedString(html:html)
-        text.scrollEnabled = true
-        text.selectable = true
-        text.editable = false
-        text.linkTextAttributes = [ NSForegroundColorAttributeName: title.textColor ]
+        infoText.attributedText = try? NSAttributedString(html:html)
+        infoText.scrollEnabled = true
+        infoText.selectable = true
+        infoText.editable = false
+        infoText.linkTextAttributes = [ NSForegroundColorAttributeName: title.textColor ]
         
-        text.textColor = title.textColor
-        text.backgroundColor = UIColor.clearColor()
-        text.font = UIFont(name: "Arial", size: 12.0)
+        infoText.textColor = title.textColor
+        infoText.backgroundColor = UIColor.clearColor()
+        infoText.font = UIFont(name: "Arial", size: 12.0)
         
-        infoView.addSubview(text)
+        infoView.addSubview(infoText)
         
-        text.translatesAutoresizingMaskIntoConstraints = false
+        infoText.translatesAutoresizingMaskIntoConstraints = false
         
-        text.topAnchor.constraintEqualToAnchor(title.bottomAnchor).active = true
-        text.leftAnchor.constraintEqualToAnchor(infoView.leftAnchor, constant: 30).active = true
-        text.rightAnchor.constraintEqualToAnchor(infoView.rightAnchor, constant: -30).active = true
-        text.bottomAnchor.constraintEqualToAnchor(infoView.bottomAnchor).active = true
+        infoText.topAnchor.constraintEqualToAnchor(title.bottomAnchor).active = true
+        infoText.leftAnchor.constraintEqualToAnchor(infoView.leftAnchor, constant: 30).active = true
+        infoText.rightAnchor.constraintEqualToAnchor(infoView.rightAnchor, constant: -30).active = true
+        infoText.bottomAnchor.constraintEqualToAnchor(shareButton.topAnchor, constant: -20).active = true
+    }
+    
+    override func viewDidLayoutSubviews() {
+        infoText.setContentOffset(CGPointZero, animated: false)
+    }
+    
+    func shareApp() {
+        let source = SharingActivityItemSource()
+        let shareViewController = UIActivityViewController(
+            activityItems: [
+                source
+            ],
+            applicationActivities: nil
+        )
+        shareViewController.excludedActivityTypes = [
+            UIActivityTypePrint,
+            UIActivityTypeAirDrop,
+            UIActivityTypeOpenInIBooks,
+            UIActivityTypePostToFlickr,
+            UIActivityTypeAssignToContact,
+            UIActivityTypeSaveToCameraRoll
+        ]
         
-
+        self.presentViewController(shareViewController, animated: true, completion: nil)
     }
     
     func hamburgerChanged() {
@@ -144,7 +178,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
                 self.mapOverlay.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.5)
             }
             self.view.layoutIfNeeded()
-        }, completion: nil)
+        }) { (completed: Bool) -> Void in
+            self.infoText.setContentOffset(CGPointZero, animated: false)
+        }
     }
 
     func appReturnedFromBackground() {
