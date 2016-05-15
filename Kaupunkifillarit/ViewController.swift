@@ -21,6 +21,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     let hamburger = LPIAnimatedHamburgerButton()
     let mapOverlay = UIView()
     let infoText = UITextView()
+    let shareButton = UIImageView(image: UIImage(named: "share-icon.png"))
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -108,8 +109,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         title.leftAnchor.constraintEqualToAnchor(infoView.leftAnchor, constant: 30).active = true
         title.rightAnchor.constraintEqualToAnchor(infoView.rightAnchor, constant: -30).active = true
         
-        
-        let shareButton = UIImageView(image: UIImage(named: "share-icon.png"))
         shareButton.userInteractionEnabled = true
         shareButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.shareApp)))
         
@@ -162,6 +161,10 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
             UIActivityTypeAssignToContact,
             UIActivityTypeSaveToCameraRoll
         ]
+        if (shareViewController.popoverPresentationController != nil) {
+            shareViewController.view.translatesAutoresizingMaskIntoConstraints = false
+            shareViewController.popoverPresentationController?.sourceView = shareButton
+        }
         
         self.presentViewController(shareViewController, animated: true, completion: nil)
     }
