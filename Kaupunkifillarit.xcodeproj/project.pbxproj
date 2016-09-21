@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2027E00B1CDD2B3D00704C27 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2027E00A1CDD2B3D00704C27 /* GoogleService-Info.plist */; };
 		203CB5ED1CDC990B00E20556 /* FillariDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203CB5EC1CDC990B00E20556 /* FillariDataSource.swift */; };
 		203CB5F11CDC9FC400E20556 /* StationAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203CB5F01CDC9FC400E20556 /* StationAnnotation.swift */; };
 		20566B211CDA5E2C00DD9071 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20566B201CDA5E2C00DD9071 /* AppDelegate.swift */; };
@@ -180,7 +179,6 @@
 				20F26A5A1CDE1DD200C2109D /* kaupunkifillarit-text.png in Resources */,
 				20566B2B1CDA5E2C00DD9071 /* LaunchScreen.storyboard in Resources */,
 				209D2A471CE26B370083DD18 /* kaupunkifillarit-logo.png in Resources */,
-				2027E00B1CDD2B3D00704C27 /* GoogleService-Info.plist in Resources */,
 				20566B281CDA5E2C00DD9071 /* Assets.xcassets in Resources */,
 				20566B261CDA5E2C00DD9071 /* Main.storyboard in Resources */,
 			);
@@ -367,6 +365,7 @@
 				INFOPLIST_FILE = Kaupunkifillarit/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_SWIFT_FLAGS = "-DDEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = fi.piispanen.kaupunkifillarit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Kaupunkifillarit/Kaupunkifillarit-Bridging-Header.h";
@@ -384,6 +383,7 @@
 				INFOPLIST_FILE = Kaupunkifillarit/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_SWIFT_FLAGS = "-DRELEASE";
 				PRODUCT_BUNDLE_IDENTIFIER = fi.piispanen.kaupunkifillarit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Kaupunkifillarit/Kaupunkifillarit-Bridging-Header.h";

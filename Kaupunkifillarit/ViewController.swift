@@ -272,8 +272,14 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     }
 
     override func viewWillAppear(animated: Bool) {
+        #if RELEASE
+            trackScreenview("map")
+        #endif
+    }
+
+    private func trackScreenView(name: String) {
         let tracker = GAI.sharedInstance().defaultTracker
-        tracker.set(kGAIScreenName, value: "map")
+        tracker.set(kGAIScreenName, value: name)
         
         let builder = GAIDictionaryBuilder.createScreenView()
         tracker.send(builder.build() as [NSObject : AnyObject])
