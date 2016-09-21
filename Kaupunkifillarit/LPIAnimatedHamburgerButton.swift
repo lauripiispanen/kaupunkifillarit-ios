@@ -17,7 +17,6 @@ class LPIAnimatedHamburgerButton: UIControl, LPIAnimatedHamburgerOptions {
             } else {
                 self.assumeShape(true, shape: self.shape)
             }
-            self.layoutIfNeeded()
         }
         didSet {
             self.sendActionsForControlEvents(.ValueChanged)
