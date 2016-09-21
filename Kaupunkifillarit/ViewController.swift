@@ -18,22 +18,17 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     let infoView = InfoDrawerView()
     var infoViewLeftAnchor:NSLayoutConstraint?
     var infoViewRightAnchor:NSLayoutConstraint?
-    let hamburger = LPIAnimatedHamburgerButton()
+    let hamburger = ViewController.initHamburger()
     let mapOverlay = UIView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         locationManager.requestWhenInUseAuthorization()
-
-        map = MKMapView()
-        map?.delegate = self
         
         dataSource.delegate = self
         
-        map!.showsUserLocation = true
-        let region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 60.1699, longitude: 24.9384), span: MKCoordinateSpan(latitudeDelta: 0.025, longitudeDelta: 0.025))
-        
-        map!.setRegion(region, animated: false)
+        map = initMap()
+        map!.delegate = self
         
         self.view.addSubview(map!)
         
@@ -41,16 +36,38 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         mapOverlay.userInteractionEnabled = false
         self.view.addSubview(mapOverlay)
         
-        self.view.addSubview(infoView)
-
         
         self.view.addSubview(hamburger)
+
+        infoView.delegate = self
+        self.view.addSubview(infoView)
+
+        self.initConstraints()
+    }
+
+    func initMap() -> MKMapView {
+        let map = MKMapView()
+
+        map.showsUserLocation = true
+
+        map.setRegion(DEFAULT_MAP_REGION, animated: false)
+        return map
+    }
+
+    private static func initHamburger() -> LPIAnimatedHamburgerButton {
+        let hamburger = LPIAnimatedHamburgerButton()
         hamburger.animationTime = 0.1
         hamburger.addTarget(self, action: #selector(hamburgerChanged), forControlEvents: .TouchUpInside)
         hamburger.layer.shadowColor = UIColor.blackColor().CGColor
         hamburger.layer.shadowOffset = CGSize(width: 0, height: 2)
         hamburger.layer.shadowRadius = 5.0
         hamburger.layer.shadowOpacity = 0.25
+        return hamburger
+    }
+
+    func initConstraints() {
+
+        // MAP
         
         map!.translatesAutoresizingMaskIntoConstraints = false
         map!.bottomAnchor.constraintEqualToAnchor(bottomLayoutGuide.topAnchor).active = true
@@ -58,17 +75,20 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         map!.leftAnchor.constraintEqualToAnchor(view.leftAnchor).active = true
         map!.rightAnchor.constraintEqualToAnchor(view.rightAnchor).active = true
         
+        // HAMBURGER
+
         hamburger.translatesAutoresizingMaskIntoConstraints = false
         hamburger.rightAnchor.constraintEqualToAnchor(view.rightAnchor, constant: -20).active = true
         hamburger.widthAnchor.constraintEqualToConstant(20).active = true
         hamburger.heightAnchor.constraintEqualToAnchor(hamburger.widthAnchor, multiplier: 1.0).active = true
         hamburger.bottomAnchor.constraintEqualToAnchor(view.bottomAnchor, constant: -20).active = true
         
-        infoView.delegate = self
+        // INFOVIEW
 
         infoView.translatesAutoresizingMaskIntoConstraints = false
         infoView.topAnchor.constraintEqualToAnchor(view.topAnchor).active = true
         infoView.bottomAnchor.constraintEqualToAnchor(view.bottomAnchor).active = true
+
         let widthConstraint = infoView.widthAnchor.constraintEqualToAnchor(view.widthAnchor, multiplier: 0.75)
         widthConstraint.priority = 900
         widthConstraint.active = true
@@ -221,3 +241,5 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     }
     
 }
+
+private let DEFAULT_MAP_REGION = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 60.1699, longitude: 24.9384), span: MKCoordinateSpan(latitudeDelta: 0.025, longitudeDelta: 0.025))
