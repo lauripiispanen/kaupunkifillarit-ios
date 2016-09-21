@@ -50,20 +50,6 @@ class FillariDataSource {
         timer?.invalidate()
     }
     
-    func nearestStation(location: CLLocation, borrowing: Bool) -> Station? {
-        let distanceTo = distance(location)
-        
-        return stations.filter { borrowing ? $0.bikesAvailable > 0 : $0.spacesAvailable > 0 }.sort({ (station1, station2) -> Bool in
-            distanceTo(station1) < distanceTo(station2)
-        }).first
-    }
-    
-}
-
-func distance(location: CLLocation) -> (Station) -> Double {
-    return {(station: Station) -> Double in
-        return location.distanceFromLocation(CLLocation(latitude: station.lat, longitude: station.lon))
-    }
 }
 
 protocol FillariDataSourceDelegate {
