@@ -33,7 +33,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         self.view.addSubview(map!)
         
         mapOverlay.frame = self.view.frame
-        mapOverlay.userInteractionEnabled = false
+        mapOverlay.isUserInteractionEnabled = false
         self.view.addSubview(mapOverlay)
         
         
@@ -54,11 +54,11 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         return map
     }
 
-    private static func initHamburger() -> LPIAnimatedHamburgerButton {
+    fileprivate static func initHamburger() -> LPIAnimatedHamburgerButton {
         let hamburger = LPIAnimatedHamburgerButton()
         hamburger.animationTime = 0.1
-        hamburger.addTarget(self, action: #selector(hamburgerChanged), forControlEvents: .TouchUpInside)
-        hamburger.layer.shadowColor = UIColor.blackColor().CGColor
+        hamburger.addTarget(self, action: #selector(hamburgerChanged), for: .touchUpInside)
+        hamburger.layer.shadowColor = UIColor.black.cgColor
         hamburger.layer.shadowOffset = CGSize(width: 0, height: 2)
         hamburger.layer.shadowRadius = 5.0
         hamburger.layer.shadowOpacity = 0.25
@@ -70,34 +70,34 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         // MAP
         
         map!.translatesAutoresizingMaskIntoConstraints = false
-        map!.bottomAnchor.constraintEqualToAnchor(bottomLayoutGuide.topAnchor).active = true
-        map!.topAnchor.constraintEqualToAnchor(view.topAnchor).active = true
-        map!.leftAnchor.constraintEqualToAnchor(view.leftAnchor).active = true
-        map!.rightAnchor.constraintEqualToAnchor(view.rightAnchor).active = true
+        map!.bottomAnchor.constraint(equalTo: bottomLayoutGuide.topAnchor).isActive = true
+        map!.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        map!.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
+        map!.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
         
         // HAMBURGER
 
         hamburger.translatesAutoresizingMaskIntoConstraints = false
-        hamburger.rightAnchor.constraintEqualToAnchor(view.rightAnchor, constant: -20).active = true
-        hamburger.widthAnchor.constraintEqualToConstant(20).active = true
-        hamburger.heightAnchor.constraintEqualToAnchor(hamburger.widthAnchor, multiplier: 1.0).active = true
-        hamburger.bottomAnchor.constraintEqualToAnchor(view.bottomAnchor, constant: -20).active = true
+        hamburger.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20).isActive = true
+        hamburger.widthAnchor.constraint(equalToConstant: 20).isActive = true
+        hamburger.heightAnchor.constraint(equalTo: hamburger.widthAnchor, multiplier: 1.0).isActive = true
+        hamburger.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -20).isActive = true
         
         // INFOVIEW
 
         infoView.translatesAutoresizingMaskIntoConstraints = false
-        infoView.topAnchor.constraintEqualToAnchor(view.topAnchor).active = true
-        infoView.bottomAnchor.constraintEqualToAnchor(view.bottomAnchor).active = true
+        infoView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        infoView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
 
-        let widthConstraint = infoView.widthAnchor.constraintEqualToAnchor(view.widthAnchor, multiplier: 0.75)
+        let widthConstraint = infoView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.75)
         widthConstraint.priority = 900
-        widthConstraint.active = true
-        infoView.widthAnchor.constraintLessThanOrEqualToConstant(300).active = true
+        widthConstraint.isActive = true
+        infoView.widthAnchor.constraint(lessThanOrEqualToConstant: 300).isActive = true
 
-        infoViewRightAnchor = infoView.rightAnchor.constraintEqualToAnchor(view.rightAnchor)
-        infoViewRightAnchor?.active = false
-        infoViewLeftAnchor = infoView.leftAnchor.constraintEqualToAnchor(view.rightAnchor)
-        infoViewLeftAnchor?.active = true
+        infoViewRightAnchor = infoView.rightAnchor.constraint(equalTo: view.rightAnchor)
+        infoViewRightAnchor?.isActive = false
+        infoViewLeftAnchor = infoView.leftAnchor.constraint(equalTo: view.rightAnchor)
+        infoViewLeftAnchor?.isActive = true
     }
     
     func onInfoViewShareSelected() {
@@ -109,31 +109,31 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
             applicationActivities: nil
         )
         shareViewController.excludedActivityTypes = [
-            UIActivityTypePrint,
-            UIActivityTypeAirDrop,
-            UIActivityTypeOpenInIBooks,
-            UIActivityTypePostToFlickr,
-            UIActivityTypeAssignToContact,
-            UIActivityTypeSaveToCameraRoll
+            UIActivityType.print,
+            UIActivityType.airDrop,
+            UIActivityType.openInIBooks,
+            UIActivityType.postToFlickr,
+            UIActivityType.assignToContact,
+            UIActivityType.saveToCameraRoll
         ]
         if (shareViewController.popoverPresentationController != nil) {
             shareViewController.view.translatesAutoresizingMaskIntoConstraints = false
             shareViewController.popoverPresentationController?.sourceView = infoView.shareButton
         }
         
-        self.presentViewController(shareViewController, animated: true, completion: nil)
+        self.present(shareViewController, animated: true, completion: nil)
     }
     
     func hamburgerChanged() {
-        UIView.animateWithDuration(0.25, delay: 0.0, options: .CurveEaseIn, animations: {
+        UIView.animate(withDuration: 0.25, delay: 0.0, options: .curveEaseIn, animations: {
             if (self.hamburger.isHamburger) {
-                self.infoViewRightAnchor?.active = false
-                self.infoViewLeftAnchor?.active = true
-                self.mapOverlay.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.0)
+                self.infoViewRightAnchor?.isActive = false
+                self.infoViewLeftAnchor?.isActive = true
+                self.mapOverlay.backgroundColor = UIColor.white.withAlphaComponent(0.0)
             } else {
-                self.infoViewLeftAnchor?.active = false
-                self.infoViewRightAnchor?.active = true
-                self.mapOverlay.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.5)
+                self.infoViewLeftAnchor?.isActive = false
+                self.infoViewRightAnchor?.isActive = true
+                self.mapOverlay.backgroundColor = UIColor.black.withAlphaComponent(0.5)
             }
             self.view.layoutIfNeeded()
         }) { (completed: Bool) -> Void in
@@ -142,27 +142,27 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     }
 
     func appReturnedFromBackground() {
-        NSNotificationCenter.defaultCenter().removeObserver(self)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(appEnteredBackground), name:
-            UIApplicationDidEnterBackgroundNotification, object: nil)
+        NotificationCenter.default.removeObserver(self)
+        NotificationCenter.default.addObserver(self, selector: #selector(appEnteredBackground), name:
+            NSNotification.Name.UIApplicationDidEnterBackground, object: nil)
         dataSource.startRefresh()
     }
 
     func appEnteredBackground() {
         self.mapHasLocatedUser = false
         dataSource.stopRefresh()
-        NSNotificationCenter.defaultCenter().removeObserver(self)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(appReturnedFromBackground), name: UIApplicationDidBecomeActiveNotification, object: nil)
+        NotificationCenter.default.removeObserver(self)
+        NotificationCenter.default.addObserver(self, selector: #selector(appReturnedFromBackground), name: NSNotification.Name.UIApplicationDidBecomeActive, object: nil)
     }
 
-    override func viewDidAppear(animated: Bool) {
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(appEnteredBackground), name:
-            UIApplicationDidEnterBackgroundNotification, object: nil)
+    override func viewDidAppear(_ animated: Bool) {
+        NotificationCenter.default.addObserver(self, selector: #selector(appEnteredBackground), name:
+            NSNotification.Name.UIApplicationDidEnterBackground, object: nil)
         dataSource.startRefresh()
     }
 
-    override func viewDidDisappear(animated: Bool) {
-        NSNotificationCenter.defaultCenter().removeObserver(self)
+    override func viewDidDisappear(_ animated: Bool) {
+        NotificationCenter.default.removeObserver(self)
     }
 
     override func didReceiveMemoryWarning() {
@@ -170,26 +170,26 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         // Dispose of any resources that can be recreated.
     }
     
-    func mapView(mapView: MKMapView, didUpdateUserLocation userLocation: MKUserLocation) {
+    func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
         if !mapHasLocatedUser && isWithinDesiredMapBounds(userLocation.coordinate) {
             mapView.setRegion(MKCoordinateRegion(center: userLocation.coordinate, span: MKCoordinateSpan(latitudeDelta: 0.015, longitudeDelta: 0.015)), animated: true)
             mapHasLocatedUser = true
         }
     }
     
-    func isWithinDesiredMapBounds(coords: CLLocationCoordinate2D) -> Bool {
+    func isWithinDesiredMapBounds(_ coords: CLLocationCoordinate2D) -> Bool {
         return coords.latitude > 60.151568 &&
                coords.latitude < 60.194072 &&
                coords.longitude > 24.903618 &&
                coords.longitude < 24.984335
     }
     
-    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         if annotation is StationAnnotation {
             let ann = (annotation as! StationAnnotation)
             let id = String(format: "station-%d/%d", ann.amount, ann.total)
             
-            var pin = mapView.dequeueReusableAnnotationViewWithIdentifier(id)
+            var pin = mapView.dequeueReusableAnnotationView(withIdentifier: id)
             if pin != nil {
                 return pin
             } else {
@@ -204,12 +204,12 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     }
     
     
-    func updatedStationData(stations: [Station]) {
+    func updatedStationData(_ stations: [Station]) {
         self.redrawStations(stations)
     }
     
     
-    func redrawStations(stations: [Station]) {
+    func redrawStations(_ stations: [Station]) {
         let markers = stations.map { (station) -> StationAnnotation in
             let total = station.bikesAvailable + station.spacesAvailable
             
@@ -217,7 +217,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
             annotation.coordinate = CLLocationCoordinate2DMake(station.lat, station.lon)
             return annotation
         }
-        dispatch_async(dispatch_get_main_queue(), {
+        DispatchQueue.main.async(execute: {
             let old_annotations = self.map!.annotations
             markers.forEach { (annotation) -> Void in
                 self.map?.addAnnotation(annotation)
@@ -226,18 +226,18 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         })
     }
 
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         #if RELEASE
             trackScreenview("map")
         #endif
     }
 
-    private func trackScreenView(name: String) {
+    fileprivate func trackScreenView(_ name: String) {
         let tracker = GAI.sharedInstance().defaultTracker
-        tracker.set(kGAIScreenName, value: name)
+        tracker?.set(kGAIScreenName, value: name)
         
         let builder = GAIDictionaryBuilder.createScreenView()
-        tracker.send(builder.build() as [NSObject : AnyObject])
+        tracker?.send(builder?.build() as! [AnyHashable: Any])
     }
     
 }

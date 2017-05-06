@@ -12,24 +12,24 @@ class SharingActivityItemSource: NSObject, UIActivityItemSource {
     
     let placeHolderText = "Kaupunkifillarit.fi - Kaupunkifillarit kartalla https://itunes.apple.com/app/id1111297620"
     
-    @objc func activityViewControllerPlaceholderItem(activityViewController: UIActivityViewController) -> AnyObject {
+    @objc func activityViewControllerPlaceholderItem(_ activityViewController: UIActivityViewController) -> Any {
         return placeHolderText
     }
     
-    func activityViewController(activityViewController: UIActivityViewController, itemForActivityType activityType: String) -> AnyObject? {
+    func activityViewController(_ activityViewController: UIActivityViewController, itemForActivityType activityType: UIActivityType) -> Any? {
         switch activityType {
-            case let x where [UIActivityTypePostToFacebook, UIActivityTypePostToTwitter].contains(x):
+            case let x where [UIActivityType.postToFacebook, UIActivityType.postToTwitter].contains(x):
                 return "Tässäpä kätevä äppi! " + placeHolderText
             default:
                 return placeHolderText
         }
     }
     
-    func activityViewController(activityViewController: UIActivityViewController, subjectForActivityType activityType: String?) -> String {
+    func activityViewController(_ activityViewController: UIActivityViewController, subjectForActivityType activityType: UIActivityType?) -> String {
         return "Kaupunkifillarit.fi - Näppärä sovellus, jolla löydät lähimmän kaupunkifillarin!"
     }
     
-    func activityViewController(activityViewController: UIActivityViewController, thumbnailImageForActivityType activityType: String?, suggestedSize size: CGSize) -> UIImage? {
+    func activityViewController(_ activityViewController: UIActivityViewController, thumbnailImageForActivityType activityType: UIActivityType?, suggestedSize size: CGSize) -> UIImage? {
         return UIImage(named: "kaupunkifillarit-logo.png")
     }
     

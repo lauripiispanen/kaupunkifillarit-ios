@@ -15,7 +15,7 @@ class InfoDrawerView: UIView {
     var delegate: InfoDrawerViewDelegate? = nil
 
     convenience init() {
-        self.init(frame: CGRectZero)
+        self.init(frame: CGRect.zero)
     }
 
     override init(frame: CGRect) {
@@ -28,14 +28,14 @@ class InfoDrawerView: UIView {
         let image = UIImageView(image: UIImage(named: "kaupunkifillarit-logo.png"))
         self.addSubview(image)
 
-        image.contentMode = .ScaleAspectFit
+        image.contentMode = .scaleAspectFit
         image.clipsToBounds = true
 
         image.translatesAutoresizingMaskIntoConstraints = false
-        image.topAnchor.constraintEqualToAnchor(self.topAnchor, constant: 20).active = true
-        image.leftAnchor.constraintEqualToAnchor(self.leftAnchor, constant: 30).active = true
-        image.rightAnchor.constraintEqualToAnchor(self.rightAnchor, constant: -30).active = true
-        image.heightAnchor.constraintEqualToAnchor(image.widthAnchor).active = true
+        image.topAnchor.constraint(equalTo: self.topAnchor, constant: 20).isActive = true
+        image.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 30).isActive = true
+        image.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -30).isActive = true
+        image.heightAnchor.constraint(equalTo: image.widthAnchor).isActive = true
 
         let title = UILabel()
         title.text = "KAUPUNKI-\nFILLARIT.FI"
@@ -46,40 +46,40 @@ class InfoDrawerView: UIView {
         self.addSubview(title)
 
         title.translatesAutoresizingMaskIntoConstraints = false
-        title.topAnchor.constraintEqualToAnchor(image.bottomAnchor).active = true
-        title.leftAnchor.constraintEqualToAnchor(self.leftAnchor, constant: 30).active = true
-        title.rightAnchor.constraintEqualToAnchor(self.rightAnchor, constant: -30).active = true
+        title.topAnchor.constraint(equalTo: image.bottomAnchor).isActive = true
+        title.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 30).isActive = true
+        title.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -30).isActive = true
 
-        shareButton.userInteractionEnabled = true
+        shareButton.isUserInteractionEnabled = true
         shareButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.shareSelected)))
 
         self.addSubview(shareButton)
         shareButton.translatesAutoresizingMaskIntoConstraints = false
 
-        shareButton.bottomAnchor.constraintEqualToAnchor(self.bottomAnchor, constant: -20).active = true
-        shareButton.leftAnchor.constraintEqualToAnchor(self.leftAnchor, constant: 30).active = true
-        shareButton.widthAnchor.constraintEqualToConstant(30).active = true
-        shareButton.heightAnchor.constraintEqualToAnchor(shareButton.widthAnchor).active = true
+        shareButton.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -20).isActive = true
+        shareButton.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 30).isActive = true
+        shareButton.widthAnchor.constraint(equalToConstant: 30).isActive = true
+        shareButton.heightAnchor.constraint(equalTo: shareButton.widthAnchor).isActive = true
 
         let html = textAsHtml
         infoText.attributedText = try? NSAttributedString(html:html)
-        infoText.scrollEnabled = true
-        infoText.selectable = true
-        infoText.editable = false
+        infoText.isScrollEnabled = true
+        infoText.isSelectable = true
+        infoText.isEditable = false
         infoText.linkTextAttributes = [ NSForegroundColorAttributeName: title.textColor ]
 
         infoText.textColor = title.textColor
-        infoText.backgroundColor = UIColor.clearColor()
+        infoText.backgroundColor = UIColor.clear
         infoText.font = UIFont(name: "Arial", size: 12.0)
 
         self.addSubview(infoText)
 
         infoText.translatesAutoresizingMaskIntoConstraints = false
 
-        infoText.topAnchor.constraintEqualToAnchor(title.bottomAnchor).active = true
-        infoText.leftAnchor.constraintEqualToAnchor(self.leftAnchor, constant: 30).active = true
-        infoText.rightAnchor.constraintEqualToAnchor(self.rightAnchor, constant: -30).active = true
-        infoText.bottomAnchor.constraintEqualToAnchor(shareButton.topAnchor, constant: -20).active = true
+        infoText.topAnchor.constraint(equalTo: title.bottomAnchor).isActive = true
+        infoText.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 30).isActive = true
+        infoText.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -30).isActive = true
+        infoText.bottomAnchor.constraint(equalTo: shareButton.topAnchor, constant: -20).isActive = true
     }
 
     func shareSelected() {
@@ -88,11 +88,11 @@ class InfoDrawerView: UIView {
 
     override func layoutSubviews() {
         super.layoutSubviews()
-        infoText.setContentOffset(CGPointZero, animated: false)
+        infoText.setContentOffset(CGPoint.zero, animated: false)
     }
 
     func didFinishAnimating() {
-        infoText.setContentOffset(CGPointZero, animated: false)
+        infoText.setContentOffset(CGPoint.zero, animated: false)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -100,7 +100,7 @@ class InfoDrawerView: UIView {
         didLoad()
     }
 
-    private let textAsHtml = "<style type=\"text/css\">a { color: #333333; }</style>" +
+    fileprivate let textAsHtml = "<style type=\"text/css\">a { color: #333333; }</style>" +
         "<p>Polkupyöräily lisää kaupunkilaisten onnea. Innostuimme <a href=\"http://reaktor.fi/careers/?utm_source=kaupunkifillarit&amp;utm_medium=referral&amp;utm_campaign=kaupunkifillarit_2016\" target=\"_blank\" title=\"Reaktor careers\">Reaktorilla</a> maan mainioista Helsingin kaupunkipyöristä.</p>" +
         "<p>Kaupunkifillareiden ainoa ongelma on niiden kova suosio. Siispä me kaupunkipyöräilijät, <a href=\"https://twitter.com/sampsakuronen\" target=\"_blank\" title=\"Sampsa Kuronen Twitter\">Sampsa Kuronen</a>, <a href=\"https://twitter.com/albrto\" target=\"_blank\">Antero Päärni</a>, <a href=\"https://twitter.com/lauripiispanen\" target=\"_blank\">Lauri Piispanen</a> ja <a href=\"https://twitter.com/hleinone\" target=\"_blank\">Hannu Leinonen</a>, päätimme vapaa-ajallamme avittaa muita kaupunkilaisia.</p>" +
         "<p>Pyöriä käyttämään pääsee tosi helposti: <a href=\"https://www.hsl.fi/kaupunkipy%C3%B6r%C3%A4t\" target=\"_blank\">hsl.fi/kaupunkipyörät</a></p>" +
@@ -117,11 +117,12 @@ protocol InfoDrawerViewDelegate {
 
 private extension NSAttributedString {
     convenience init(html:String) throws {
-        guard let data = html.dataUsingEncoding(NSUTF8StringEncoding) else {
+        guard let data = html.data(using: String.Encoding.utf8) else {
             throw NSError(domain: "Invalid HTML", code: -500, userInfo: nil)
         }
 
-        let options = [NSDocumentTypeDocumentAttribute : NSHTMLTextDocumentType, NSCharacterEncodingDocumentAttribute: NSNumber(unsignedInteger:NSUTF8StringEncoding)]
+        let options = [NSDocumentTypeDocumentAttribute : NSHTMLTextDocumentType, NSCharacterEncodingDocumentAttribute: String.Encoding.utf8.rawValue] as [String: Any]
+        
         try self.init(data: data, options: options, documentAttributes: nil)
     }
 }

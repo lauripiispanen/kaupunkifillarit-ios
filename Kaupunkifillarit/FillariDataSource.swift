@@ -11,37 +11,37 @@ import MapKit
 
 class FillariDataSource {
     
-    let API = NSURL(string: "https://kaupunkifillarit.fi/api/stations")
+    let API = URL(string: "https://kaupunkifillarit.fi/api/stations")
     var delegate: FillariDataSourceDelegate?
     var stations = Array<Station>()
-    var timer:NSTimer?
+    var timer:Timer?
     
     @objc func loadData() {
         print("Reloading station data...")
-        let task = NSURLSession.sharedSession().dataTaskWithURL(API!) {
+        let task = URLSession.shared.dataTask(with: API!, completionHandler: {
             (data, response, error) -> Void in
             if data == nil {
                 return
             }
             do {
-                let obj = try NSJSONSerialization.JSONObjectWithData(data!, options: .MutableContainers) as! NSDictionary
+                let obj = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as! NSDictionary
                 let stations = obj["bikeRentalStations"]
                 if stations is NSArray {
-                    self.stations = (stations as! NSArray).map { Station.parse($0) }.filter { $0 != nil }.map { $0! }
+                    self.stations = (stations as! NSArray).map { Station.parse($0 as AnyObject) }.filter { $0 != nil }.map { $0! }
                     self.delegate?.updatedStationData(self.stations)
                 }
             } catch let err {
                 print(err)
             }
             
-        }
+        }) 
         
         task.resume()
     }
     
     func startRefresh() {
         print("starting station data refresh job")
-        timer = NSTimer.scheduledTimerWithTimeInterval(60.0, target: self, selector: #selector(loadData), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: 60.0, target: self, selector: #selector(loadData), userInfo: nil, repeats: true)
         timer?.fire()
     }
 
@@ -54,7 +54,7 @@ class FillariDataSource {
 
 protocol FillariDataSourceDelegate {
     
-    func updatedStationData(stations: [Station])
+    func updatedStationData(_ stations: [Station])
     
 }
 
@@ -66,7 +66,7 @@ struct Station {
     let lon: Double
     let name: String
     
-    static func parse(obj: AnyObject) -> Station? {
+    static func parse(_ obj: AnyObject) -> Station? {
         if obj is Dictionary<String, AnyObject> {
             if let spacesAvailable = obj["spacesAvailable"] as? Int,
                 let bikesAvailable = obj["bikesAvailable"] as? Int,

@@ -19,19 +19,19 @@ class LPIAnimatedHamburgerButton: UIControl, LPIAnimatedHamburgerOptions {
             }
         }
         didSet {
-            self.sendActionsForControlEvents(.ValueChanged)
+            self.sendActions(for: .valueChanged)
         }
     }
     
     var animationTime: Double = 0.3
     var lineWidth: Double = 3.0
     var lineCap = kCALineCapRound
-    var strokeColor: CGColor = UIColor.whiteColor().CGColor
+    var strokeColor: CGColor = UIColor.white.cgColor
     var originShape: LPIAnimatedHamburgerShape = LPIAnimatedHamburgerDefaultShapes.Hamburger
     var shape: LPIAnimatedHamburgerShape = LPIAnimatedHamburgerDefaultShapes.ArrowRight
     var timingFunction: CAMediaTimingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseIn)
     
-    private var layers = (
+    fileprivate var layers = (
         CAShapeLayer(),
         CAShapeLayer(),
         CAShapeLayer()
@@ -50,8 +50,8 @@ class LPIAnimatedHamburgerButton: UIControl, LPIAnimatedHamburgerOptions {
         fatalError("This class does not support NSCoding")
     }
     
-    private func addBehavior() {
-        self.addTarget(self, action: #selector(toggleValue), forControlEvents: .TouchUpInside)
+    fileprivate func addBehavior() {
+        self.addTarget(self, action: #selector(toggleValue), for: .touchUpInside)
         
         self.layer.addSublayer(layers.0)
         self.layer.addSublayer(layers.1)
@@ -64,15 +64,15 @@ class LPIAnimatedHamburgerButton: UIControl, LPIAnimatedHamburgerOptions {
         isHamburger = !isHamburger
     }
     
-    func assumeShape(animate:Bool = false, shape: LPIAnimatedHamburgerShape) {
-        shape(layers: self.layers, animate: true, options: self)
+    func assumeShape(_ animate:Bool = false, shape: LPIAnimatedHamburgerShape) {
+        shape(self.layers, true, self)
 
         initLayerSettings(layers.0)
         initLayerSettings(layers.1)
         initLayerSettings(layers.2)
     }
     
-    private func initLayerSettings(shapeLayer: CAShapeLayer) {
+    fileprivate func initLayerSettings(_ shapeLayer: CAShapeLayer) {
         shapeLayer.lineWidth = CGFloat(lineWidth)
         shapeLayer.strokeColor = strokeColor
         shapeLayer.lineCap = lineCap
@@ -87,7 +87,7 @@ class LPIAnimatedHamburgerButton: UIControl, LPIAnimatedHamburgerOptions {
         self.redraw()
     }
     
-    private func redraw() {
+    fileprivate func redraw() {
         if (isHamburger) {
             self.assumeShape(false, shape: self.originShape)
         } else {
@@ -99,31 +99,31 @@ class LPIAnimatedHamburgerButton: UIControl, LPIAnimatedHamburgerOptions {
 }
 
 struct LPIAnimatedHamburgerDefaultShapes {
-    static func Hamburger(layers: (CAShapeLayer, CAShapeLayer, CAShapeLayer), animate: Bool, options: LPIAnimatedHamburgerOptions) {
+    static func Hamburger(_ layers: (CAShapeLayer, CAShapeLayer, CAShapeLayer), animate: Bool, options: LPIAnimatedHamburgerOptions) {
         assume(layers.0, path: (CGPoint(x: 0, y: layers.0.frame.height * 0.1), CGPoint(x: layers.0.frame.width, y: layers.0.frame.height * 0.1)), opacity: 1.0, options: options, animate: animate)
         assume(layers.1, path: (CGPoint(x: 0.0, y: layers.1.frame.height / 2.0), CGPoint(x: layers.1.frame.width, y: layers.1.frame.height / 2.0)), opacity: 1.0, options: options, animate: animate)
         assume(layers.2, path: (CGPoint(x: 0.0, y: layers.2.frame.height * 0.9), CGPoint(x: layers.2.frame.width, y: layers.2.frame.height * 0.9)), opacity: 1.0, options: options, animate: animate)
     }
-    static func Cross(layers: (CAShapeLayer, CAShapeLayer, CAShapeLayer), animate: Bool, options: LPIAnimatedHamburgerOptions) {
+    static func Cross(_ layers: (CAShapeLayer, CAShapeLayer, CAShapeLayer), animate: Bool, options: LPIAnimatedHamburgerOptions) {
         assume(layers.0, path: (CGPoint(x: 0, y: 0), CGPoint(x: layers.0.frame.width, y: layers.0.frame.height)), opacity: 1.0, options: options, animate: animate)
         assume(layers.1, path: layers.1.path, opacity: 0.0, options: options, animate: animate)
         assume(layers.2, path: (CGPoint(x: 0.0, y: layers.2.frame.height), CGPoint(x: layers.2.frame.width, y: 0.0)), opacity: 1.0, options: options, animate: animate)
     }
-    static func ArrowRight(layers: (CAShapeLayer, CAShapeLayer, CAShapeLayer), animate: Bool, options: LPIAnimatedHamburgerOptions) {
+    static func ArrowRight(_ layers: (CAShapeLayer, CAShapeLayer, CAShapeLayer), animate: Bool, options: LPIAnimatedHamburgerOptions) {
         assume(layers.0, path: (CGPoint(x: layers.0.frame.width / 2, y: 0), CGPoint(x: layers.0.frame.width, y: layers.0.frame.height / 2)), opacity: 1.0, options: options, animate: animate)
         assume(layers.1, path: (CGPoint(x: 0.0, y: layers.1.frame.height / 2.0), CGPoint(x: layers.1.frame.width, y: layers.1.frame.height / 2.0)), opacity: 1.0, options: options, animate: animate)
         assume(layers.2, path: (CGPoint(x: layers.0.frame.width / 2, y: layers.2.frame.height), CGPoint(x: layers.2.frame.width, y: layers.2.frame.height / 2)), opacity: 1.0, options: options, animate: animate)
     }
     
-    private static func assume(layer: CAShapeLayer, path: LPIPathSpec, opacity: Float, options: LPIAnimatedHamburgerOptions, animate: Bool) {
+    fileprivate static func assume(_ layer: CAShapeLayer, path: LPIPathSpec, opacity: Float, options: LPIAnimatedHamburgerOptions, animate: Bool) {
         
         let bezierPath = UIBezierPath()
-        bezierPath.moveToPoint(path.0)
-        bezierPath.addLineToPoint(path.1)
-        assume(layer, path: bezierPath.CGPath, opacity: opacity, options: options, animate: animate)
+        bezierPath.move(to: path.0)
+        bezierPath.addLine(to: path.1)
+        assume(layer, path: bezierPath.cgPath, opacity: opacity, options: options, animate: animate)
     }
     
-    private static func assume(layer: CAShapeLayer, path: CGPath?, opacity: Float, options: LPIAnimatedHamburgerOptions, animate: Bool) {
+    fileprivate static func assume(_ layer: CAShapeLayer, path: CGPath?, opacity: Float, options: LPIAnimatedHamburgerOptions, animate: Bool) {
         
         if (animate) {
             let pathAnimation = CABasicAnimation(keyPath: "path")
@@ -131,14 +131,14 @@ struct LPIAnimatedHamburgerDefaultShapes {
             pathAnimation.toValue = path
             pathAnimation.duration = options.animationTime
             pathAnimation.timingFunction = options.timingFunction
-            layer.addAnimation(pathAnimation, forKey: "Path")
+            layer.add(pathAnimation, forKey: "Path")
             
             let opacityAnimation = CABasicAnimation(keyPath: "opacity")
             opacityAnimation.fromValue = layer.opacity
             opacityAnimation.toValue = opacity
             opacityAnimation.duration = options.animationTime
             opacityAnimation.timingFunction = options.timingFunction
-            layer.addAnimation(opacityAnimation, forKey: "Opacity")
+            layer.add(opacityAnimation, forKey: "Opacity")
         }
         layer.path = path
         layer.opacity = opacity
@@ -149,7 +149,7 @@ struct LPIAnimatedHamburgerDefaultShapes {
 
 typealias LPIPathSpec = (CGPoint, CGPoint)
 
-typealias LPIAnimatedHamburgerShape = (layers: (CAShapeLayer, CAShapeLayer, CAShapeLayer), animate: Bool, options: LPIAnimatedHamburgerOptions) -> Void
+typealias LPIAnimatedHamburgerShape = (_ layers: (CAShapeLayer, CAShapeLayer, CAShapeLayer), _ animate: Bool, _ options: LPIAnimatedHamburgerOptions) -> Void
 
 protocol LPIAnimatedHamburgerOptions {
     
