@@ -14,6 +14,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     var map: MKMapView?
     let dataSource = FillariDataSource()
     var mapHasLocatedUser = false
+    var zoomedIn = false
     let locationManager = CLLocationManager()
     let infoView = InfoDrawerView()
     var infoViewLeftAnchor:NSLayoutConstraint?
@@ -187,7 +188,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         if annotation is StationAnnotation {
             let ann = (annotation as! StationAnnotation)
-            let id = String(format: "station-%d/%d", ann.amount, ann.total)
+            let id = String(format: "station-%d/%d-%@", ann.amount, ann.total, String(ann.small))
             
             var pin = mapView.dequeueReusableAnnotationView(withIdentifier: id)
             if pin != nil {
@@ -203,17 +204,23 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         return nil
     }
     
+    func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
+        let zoomed = mapView.region.span.latitudeDelta < 0.022
+        if zoomed != self.zoomedIn {
+            self.zoomedIn = zoomed
+            self.redrawStations(dataSource.stations)
+        }
+    }
     
     func updatedStationData(_ stations: [Station]) {
         self.redrawStations(stations)
     }
     
-    
     func redrawStations(_ stations: [Station]) {
         let markers = stations.map { (station) -> StationAnnotation in
             let total = station.bikesAvailable + station.spacesAvailable
             
-            let annotation = StationAnnotation(amount: station.bikesAvailable, total: total)
+            let annotation = StationAnnotation(amount: station.bikesAvailable, total: total, small: !self.zoomedIn)
             annotation.coordinate = CLLocationCoordinate2DMake(station.lat, station.lon)
             return annotation
         }

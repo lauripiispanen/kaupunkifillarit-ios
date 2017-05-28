@@ -11,23 +11,25 @@ import MapKit
 class StationAnnotation: MKPointAnnotation {
     let amount:Int
     let total:Int
+    let small:Bool
     var icon:UIImage {
         get {
-            return createMarkerIcon(self.amount, total: self.total)
+            return createMarkerIcon(self.amount, total: self.total, small: self.small)
         }
     }
     
-    init(amount: Int, total: Int) {
+    init(amount: Int, total: Int, small: Bool = false) {
         self.amount = amount
         self.total = total
+        self.small = small
         super.init()
     }
 }
 
-func createMarkerIcon(_ amount: Int, total: Int) -> UIImage {
+func createMarkerIcon(_ amount: Int, total: Int, small: Bool = false) -> UIImage {
     let margin:Double = 0
-    let width:Double = 44
-    let height:Double = 60
+    let width:Double = small ? 22 : 44
+    let height:Double = small ? 30 : 60
 
     let label = UIView(frame: CGRect(x: 0, y: 0, width: width + (2 * margin), height: height + (2 * margin)))
     label.isOpaque = false
@@ -54,7 +56,12 @@ func createMarkerIcon(_ amount: Int, total: Int) -> UIImage {
     label.layer.addSublayer(markerBackground)
     
     let text = UILabel(frame: CGRect(x: 0, y: 0, width: width, height: height * 3.0 / 4.0))
-    text.text = String(format: "%d / %d", amount, total)
+    if small {
+        text.text = String(format: "%d", amount)
+    } else {
+        text.text = String(format: "%d / %d", amount, total)
+    }
+
     text.textAlignment = .center
     text.font = text.font.withSize(12.0)
     
