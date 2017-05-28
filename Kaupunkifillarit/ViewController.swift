@@ -249,4 +249,4 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     
 }
 
-private let DEFAULT_MAP_REGION = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 60.1699, longitude: 24.9384), span: MKCoordinateSpan(latitudeDelta: 0.025, longitudeDelta: 0.025))
+private let DEFAULT_MAP_REGION = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 60.1699, longitude: 24.9384), span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05))
