@@ -36,7 +36,7 @@ func createMarkerIcon(_ amount: Int, total: Int) -> UIImage {
     let markerPath = UIBezierPath()
     markerPath.move(to: CGPoint(x: width / 2.0, y: height))
     markerPath.addCurve(to: CGPoint(x: 0, y: width / 2.0), controlPoint1: CGPoint(x: 0, y: 7.0 * width / 8.0), controlPoint2: CGPoint(x: 0, y: 5.0 * width / 8.0))
-    markerPath.addArc(withCenter: CGPoint(x: width / 2.0, y: width / 2.0), radius: (CGFloat(width) / 2.0), startAngle: CGFloat(M_PI), endAngle: 0, clockwise: true)
+    markerPath.addArc(withCenter: CGPoint(x: width / 2.0, y: width / 2.0), radius: (CGFloat(width) / 2.0), startAngle: CGFloat(Double.pi), endAngle: 0, clockwise: true)
     markerPath.addCurve(to: CGPoint(x: width / 2.0, y: height), controlPoint1: CGPoint(x: width, y: 5.0 * width / 8.0), controlPoint2: CGPoint(x: width, y: 7.0 * width / 8.0))
 
     let markerBackground = CAShapeLayer()
