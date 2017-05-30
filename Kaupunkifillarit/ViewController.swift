@@ -37,13 +37,14 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         mapOverlay.isUserInteractionEnabled = false
         self.view.addSubview(mapOverlay)
         
-        
-        self.view.addSubview(hamburger)
-
         infoView.delegate = self
         self.view.addSubview(infoView)
 
+        self.view.addSubview(hamburger)
+
         self.initConstraints()
+
+        hamburger.addTarget(self, action: #selector(hamburgerChanged), for: .touchUpInside)
     }
 
     func initMap() -> MKMapView {
@@ -58,7 +59,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     fileprivate static func initHamburger() -> LPIAnimatedHamburgerButton {
         let hamburger = LPIAnimatedHamburgerButton()
         hamburger.animationTime = 0.1
-        hamburger.addTarget(self, action: #selector(hamburgerChanged), for: .touchUpInside)
         hamburger.layer.shadowColor = UIColor.black.cgColor
         hamburger.layer.shadowOffset = CGSize(width: 0, height: 2)
         hamburger.layer.shadowRadius = 5.0
@@ -83,7 +83,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         hamburger.widthAnchor.constraint(equalToConstant: 20).isActive = true
         hamburger.heightAnchor.constraint(equalTo: hamburger.widthAnchor, multiplier: 1.0).isActive = true
         hamburger.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -20).isActive = true
-        
+
+
         // INFOVIEW
 
         infoView.translatesAutoresizingMaskIntoConstraints = false
@@ -99,6 +100,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         infoViewRightAnchor?.isActive = false
         infoViewLeftAnchor = infoView.leftAnchor.constraint(equalTo: view.rightAnchor)
         infoViewLeftAnchor?.isActive = true
+
+        self.view.setNeedsUpdateConstraints()
+        self.view.layoutIfNeeded()
     }
     
     func onInfoViewShareSelected() {
