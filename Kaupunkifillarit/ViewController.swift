@@ -239,7 +239,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
 
     override func viewWillAppear(_ animated: Bool) {
         #if RELEASE
-            trackScreenview("map")
+            trackScreenView("map")
         #endif
     }
 
