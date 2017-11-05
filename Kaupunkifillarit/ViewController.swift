@@ -199,7 +199,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         if annotation is StationAnnotation {
             let ann = (annotation as! StationAnnotation)
-            let id = String(format: "station-%d/%d-%@", ann.amount, ann.total, String(ann.small))
+            let id = String(format: "station-%d-%@", ann.amount, String(ann.small))
             
             var pin = mapView.dequeueReusableAnnotationView(withIdentifier: id)
             if pin != nil {
@@ -229,9 +229,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     
     func redrawStations(_ stations: [Station]) {
         let markers = stations.map { (station) -> StationAnnotation in
-            let total = station.bikesAvailable + station.spacesAvailable
-            
-            let annotation = StationAnnotation(amount: station.bikesAvailable, total: total, small: !self.zoomedIn)
+            let annotation = StationAnnotation(amount: station.bikesAvailable, small: !self.zoomedIn)
             annotation.coordinate = CLLocationCoordinate2DMake(station.lat, station.lon)
             return annotation
         }

@@ -59,7 +59,6 @@ protocol FillariDataSourceDelegate {
 }
 
 struct Station {
-    let spacesAvailable: Int
     let bikesAvailable: Int
     let id: String
     let lat: Double
@@ -68,13 +67,12 @@ struct Station {
     
     static func parse(_ obj: AnyObject) -> Station? {
         if obj is Dictionary<String, AnyObject> {
-            if let spacesAvailable = obj["spacesAvailable"] as? Int,
-                let bikesAvailable = obj["bikesAvailable"] as? Int,
+            if let bikesAvailable = obj["bikesAvailable"] as? Int,
                 let id = obj["id"] as? String,
                 let lat = obj["lat"] as? Double,
                 let lon = obj["lon"] as? Double,
                 let name = obj["name"] as? String {
-                return Station(spacesAvailable: spacesAvailable, bikesAvailable: bikesAvailable, id: id, lat: lat, lon: lon, name: name)
+                return Station(bikesAvailable: bikesAvailable, id: id, lat: lat, lon: lon, name: name)
             }
         }
         return nil
