@@ -17,7 +17,6 @@
 		2092BB6F1CE44E7400263C58 /* LPIAnimatedHamburgerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2092BB6E1CE44E7400263C58 /* LPIAnimatedHamburgerButton.swift */; };
 		209D2A471CE26B370083DD18 /* kaupunkifillarit-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 209D2A461CE26B370083DD18 /* kaupunkifillarit-logo.png */; };
 		20EB46441CE8D2B70025A8CF /* share-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 20EB46431CE8D2B70025A8CF /* share-icon.png */; };
-		20EB46461CE8EB950025A8CF /* SharingActivityItemSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20EB46451CE8EB950025A8CF /* SharingActivityItemSource.swift */; };
 		20F26A5A1CDE1DD200C2109D /* kaupunkifillarit-text.png in Resources */ = {isa = PBXBuildFile; fileRef = 20F26A591CDE1DD200C2109D /* kaupunkifillarit-text.png */; };
 		20FCDD091D9305B100BDB6A8 /* InfoDrawerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FCDD081D9305B100BDB6A8 /* InfoDrawerView.swift */; };
 		998D29451EDDA53600C54EEB /* KaupunkifillaritUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998D29441EDDA53600C54EEB /* KaupunkifillaritUITests.swift */; };
@@ -51,7 +50,6 @@
 		2092BB6E1CE44E7400263C58 /* LPIAnimatedHamburgerButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LPIAnimatedHamburgerButton.swift; sourceTree = "<group>"; };
 		209D2A461CE26B370083DD18 /* kaupunkifillarit-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "kaupunkifillarit-logo.png"; sourceTree = "<group>"; };
 		20EB46431CE8D2B70025A8CF /* share-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "share-icon.png"; sourceTree = "<group>"; };
-		20EB46451CE8EB950025A8CF /* SharingActivityItemSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharingActivityItemSource.swift; sourceTree = "<group>"; };
 		20F26A591CDE1DD200C2109D /* kaupunkifillarit-text.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "kaupunkifillarit-text.png"; sourceTree = "<group>"; };
 		20FCDD081D9305B100BDB6A8 /* InfoDrawerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoDrawerView.swift; sourceTree = "<group>"; };
 		31D14FD41BAAA2102BD491FA /* Pods_Kaupunkifillarit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Kaupunkifillarit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -118,7 +116,6 @@
 				203CB5EC1CDC990B00E20556 /* FillariDataSource.swift */,
 				203CB5F01CDC9FC400E20556 /* StationAnnotation.swift */,
 				2092BB6E1CE44E7400263C58 /* LPIAnimatedHamburgerButton.swift */,
-				20EB46451CE8EB950025A8CF /* SharingActivityItemSource.swift */,
 				20FCDD081D9305B100BDB6A8 /* InfoDrawerView.swift */,
 			);
 			path = Kaupunkifillarit;
@@ -199,7 +196,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0830;
-				LastUpgradeCheck = 0730;
+				LastUpgradeCheck = 0910;
 				ORGANIZATIONNAME = "Lauri Piispanen";
 				TargetAttributes = {
 					20566B1C1CDA5E2C00DD9071 = {
@@ -311,7 +308,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				20EB46461CE8EB950025A8CF /* SharingActivityItemSource.swift in Sources */,
 				2092BB6F1CE44E7400263C58 /* LPIAnimatedHamburgerButton.swift in Sources */,
 				203CB5ED1CDC990B00E20556 /* FillariDataSource.swift in Sources */,
 				20FCDD091D9305B100BDB6A8 /* InfoDrawerView.swift in Sources */,
@@ -369,13 +365,21 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -415,13 +419,21 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -440,6 +452,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};

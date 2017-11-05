@@ -11,8 +11,6 @@ import Foundation
 class InfoDrawerView: UIView {
 
     let infoText = UITextView()
-    let shareButton = UIImageView(image: UIImage(named: "share-icon.png"))
-    var delegate: InfoDrawerViewDelegate? = nil
 
     convenience init() {
         self.init(frame: CGRect.zero)
@@ -50,24 +48,6 @@ class InfoDrawerView: UIView {
         title.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 30).isActive = true
         title.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -30).isActive = true
 
-        shareButton.isUserInteractionEnabled = true
-        shareButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.shareSelected)))
-
-        self.addSubview(shareButton)
-        shareButton.translatesAutoresizingMaskIntoConstraints = false
-
-        var bottomAnchor: NSLayoutYAxisAnchor?
-        if #available(iOS 11, *) {
-            bottomAnchor = self.safeAreaLayoutGuide.bottomAnchor
-        } else {
-            bottomAnchor = self.bottomAnchor
-        }
-
-        shareButton.bottomAnchor.constraint(equalTo: bottomAnchor!, constant: -20).isActive = true
-        shareButton.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 30).isActive = true
-        shareButton.widthAnchor.constraint(equalToConstant: 30).isActive = true
-        shareButton.heightAnchor.constraint(equalTo: shareButton.widthAnchor).isActive = true
-
         let html = textAsHtml
         infoText.attributedText = try? NSAttributedString(html:html)
         infoText.isScrollEnabled = true
@@ -86,11 +66,8 @@ class InfoDrawerView: UIView {
         infoText.topAnchor.constraint(equalTo: title.bottomAnchor).isActive = true
         infoText.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 30).isActive = true
         infoText.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -30).isActive = true
-        infoText.bottomAnchor.constraint(equalTo: shareButton.topAnchor, constant: -20).isActive = true
-    }
+        infoText.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -20).isActive = true
 
-    @objc func shareSelected() {
-        delegate?.onInfoViewShareSelected()
     }
 
     override func layoutSubviews() {
@@ -113,12 +90,6 @@ class InfoDrawerView: UIView {
         "<p>Pyöriä käyttämään pääsee tosi helposti: <a href=\"https://www.hsl.fi/kaupunkipy%C3%B6r%C3%A4t\" target=\"_blank\">hsl.fi/kaupunkipyörät</a></p>" +
         "<p><a href=\"https://www.dropbox.com/sh/ni5lq7nu0waqprs/AAD5hdNUydglidjCfhM27zyDa?dl=0\" target=\"_blank\" title=\"Kaupunkifillarit.fi lehdistömateriaalit\">Press kit löytyy täältä.</a></p>" +
     "<p>Tiedot ovat HSL:n tarjoamaa avointa dataa.</p>"
-
-}
-
-protocol InfoDrawerViewDelegate {
-
-    func onInfoViewShareSelected()
 
 }
 

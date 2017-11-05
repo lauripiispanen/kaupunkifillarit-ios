@@ -9,7 +9,7 @@
 import UIKit
 import MapKit
 
-class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, FillariDataSourceDelegate, InfoDrawerViewDelegate {
+class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, FillariDataSourceDelegate {
     
     var map: MKMapView?
     let dataSource = FillariDataSource()
@@ -36,8 +36,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         mapOverlay.frame = self.view.frame
         mapOverlay.isUserInteractionEnabled = false
         self.view.addSubview(mapOverlay)
-        
-        infoView.delegate = self
+
         self.view.addSubview(infoView)
 
         self.view.addSubview(hamburger)
@@ -107,31 +106,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         self.view.setNeedsUpdateConstraints()
         self.view.layoutIfNeeded()
     }
-    
-    func onInfoViewShareSelected() {
-        let source = SharingActivityItemSource()
-        let shareViewController = UIActivityViewController(
-            activityItems: [
-                source
-            ],
-            applicationActivities: nil
-        )
-        shareViewController.excludedActivityTypes = [
-            UIActivityType.print,
-            UIActivityType.airDrop,
-            UIActivityType.openInIBooks,
-            UIActivityType.postToFlickr,
-            UIActivityType.assignToContact,
-            UIActivityType.saveToCameraRoll
-        ]
-        if (shareViewController.popoverPresentationController != nil) {
-            shareViewController.view.translatesAutoresizingMaskIntoConstraints = false
-            shareViewController.popoverPresentationController?.sourceView = infoView.shareButton
-        }
-        
-        self.present(shareViewController, animated: true, completion: nil)
-    }
-    
+
     @objc func hamburgerChanged() {
         UIView.animate(withDuration: 0.25, delay: 0.0, options: .curveEaseIn, animations: {
             if (self.hamburger.isHamburger) {
