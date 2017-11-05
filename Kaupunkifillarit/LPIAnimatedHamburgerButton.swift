@@ -60,7 +60,7 @@ class LPIAnimatedHamburgerButton: UIControl, LPIAnimatedHamburgerOptions {
         self.redraw()
     }
     
-    func toggleValue() {
+    @objc func toggleValue() {
         isHamburger = !isHamburger
     }
     

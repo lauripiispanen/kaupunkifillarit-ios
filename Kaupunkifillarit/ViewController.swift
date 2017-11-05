@@ -92,7 +92,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         infoView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
 
         let widthConstraint = infoView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.75)
-        widthConstraint.priority = 900
+        widthConstraint.priority = UILayoutPriority(rawValue: 900)
         widthConstraint.isActive = true
         infoView.widthAnchor.constraint(lessThanOrEqualToConstant: 300).isActive = true
 
@@ -129,7 +129,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         self.present(shareViewController, animated: true, completion: nil)
     }
     
-    func hamburgerChanged() {
+    @objc func hamburgerChanged() {
         UIView.animate(withDuration: 0.25, delay: 0.0, options: .curveEaseIn, animations: {
             if (self.hamburger.isHamburger) {
                 self.infoViewRightAnchor?.isActive = false
@@ -146,14 +146,14 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         }
     }
 
-    func appReturnedFromBackground() {
+    @objc func appReturnedFromBackground() {
         NotificationCenter.default.removeObserver(self)
         NotificationCenter.default.addObserver(self, selector: #selector(appEnteredBackground), name:
             NSNotification.Name.UIApplicationDidEnterBackground, object: nil)
         dataSource.startRefresh()
     }
 
-    func appEnteredBackground() {
+    @objc func appEnteredBackground() {
         self.mapHasLocatedUser = false
         dataSource.stopRefresh()
         NotificationCenter.default.removeObserver(self)

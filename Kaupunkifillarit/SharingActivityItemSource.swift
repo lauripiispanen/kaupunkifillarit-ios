@@ -16,9 +16,9 @@ class SharingActivityItemSource: NSObject, UIActivityItemSource {
         return placeHolderText
     }
     
-    func activityViewController(_ activityViewController: UIActivityViewController, itemForActivityType activityType: UIActivityType) -> Any? {
+    func activityViewController(_ activityViewController: UIActivityViewController, itemForActivityType activityType: UIActivityType?) -> Any? {
         switch activityType {
-            case let x where [UIActivityType.postToFacebook, UIActivityType.postToTwitter].contains(x):
+            case let x where x != nil && [UIActivityType.postToFacebook, UIActivityType.postToTwitter].contains(x!):
                 return "Tässäpä kätevä äppi! " + placeHolderText
             default:
                 return placeHolderText

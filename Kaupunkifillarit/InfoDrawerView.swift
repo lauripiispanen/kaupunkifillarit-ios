@@ -66,7 +66,7 @@ class InfoDrawerView: UIView {
         infoText.isScrollEnabled = true
         infoText.isSelectable = true
         infoText.isEditable = false
-        infoText.linkTextAttributes = [ NSForegroundColorAttributeName: title.textColor ]
+        infoText.linkTextAttributes = [ NSAttributedStringKey.foregroundColor.rawValue: title.textColor ]
 
         infoText.textColor = title.textColor
         infoText.backgroundColor = UIColor.clear
@@ -82,7 +82,7 @@ class InfoDrawerView: UIView {
         infoText.bottomAnchor.constraint(equalTo: shareButton.topAnchor, constant: -20).isActive = true
     }
 
-    func shareSelected() {
+    @objc func shareSelected() {
         delegate?.onInfoViewShareSelected()
     }
 
@@ -121,7 +121,10 @@ private extension NSAttributedString {
             throw NSError(domain: "Invalid HTML", code: -500, userInfo: nil)
         }
 
-        let options = [NSDocumentTypeDocumentAttribute : NSHTMLTextDocumentType, NSCharacterEncodingDocumentAttribute: String.Encoding.utf8.rawValue] as [String: Any]
+        let options = [
+            NSAttributedString.DocumentReadingOptionKey.documentType : NSAttributedString.DocumentType.html,
+            NSAttributedString.DocumentReadingOptionKey.characterEncoding: String.Encoding.utf8.rawValue
+        ] as [NSAttributedString.DocumentReadingOptionKey : Any]
         
         try self.init(data: data, options: options, documentAttributes: nil)
     }
