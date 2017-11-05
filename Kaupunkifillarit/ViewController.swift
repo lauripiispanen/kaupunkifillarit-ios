@@ -67,29 +67,32 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     }
 
     func initConstraints() {
-
-        // MAP
+        var bottomAnchor: NSLayoutYAxisAnchor?
+        if #available(iOS 11, *) {
+            bottomAnchor = view.safeAreaLayoutGuide.bottomAnchor
+        } else {
+            bottomAnchor = bottomLayoutGuide.topAnchor
+        }
+        [
+            map!,
+            hamburger,
+            infoView
+        ].forEach { $0.translatesAutoresizingMaskIntoConstraints = false }
         
-        map!.translatesAutoresizingMaskIntoConstraints = false
-        map!.bottomAnchor.constraint(equalTo: bottomLayoutGuide.topAnchor).isActive = true
-        map!.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        map!.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
-        map!.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
-        
-        // HAMBURGER
+        NSLayoutConstraint.activate([
+            map!.topAnchor.constraint(equalTo: view.topAnchor),
+            map!.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            map!.leftAnchor.constraint(equalTo: view.leftAnchor),
+            map!.rightAnchor.constraint(equalTo: view.rightAnchor),
 
-        hamburger.translatesAutoresizingMaskIntoConstraints = false
-        hamburger.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20).isActive = true
-        hamburger.widthAnchor.constraint(equalToConstant: 20).isActive = true
-        hamburger.heightAnchor.constraint(equalTo: hamburger.widthAnchor, multiplier: 1.0).isActive = true
-        hamburger.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -20).isActive = true
+            hamburger.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20),
+            hamburger.widthAnchor.constraint(equalToConstant: 20),
+            hamburger.heightAnchor.constraint(equalTo: hamburger.widthAnchor, multiplier: 1.0),
+            hamburger.bottomAnchor.constraint(equalTo: bottomAnchor!, constant: -20),
 
-
-        // INFOVIEW
-
-        infoView.translatesAutoresizingMaskIntoConstraints = false
-        infoView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        infoView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+            infoView.topAnchor.constraint(equalTo: view.topAnchor),
+            infoView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
 
         let widthConstraint = infoView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.75)
         widthConstraint.priority = UILayoutPriority(rawValue: 900)

@@ -56,7 +56,14 @@ class InfoDrawerView: UIView {
         self.addSubview(shareButton)
         shareButton.translatesAutoresizingMaskIntoConstraints = false
 
-        shareButton.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -20).isActive = true
+        var bottomAnchor: NSLayoutYAxisAnchor?
+        if #available(iOS 11, *) {
+            bottomAnchor = self.safeAreaLayoutGuide.bottomAnchor
+        } else {
+            bottomAnchor = self.bottomAnchor
+        }
+
+        shareButton.bottomAnchor.constraint(equalTo: bottomAnchor!, constant: -20).isActive = true
         shareButton.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 30).isActive = true
         shareButton.widthAnchor.constraint(equalToConstant: 30).isActive = true
         shareButton.heightAnchor.constraint(equalTo: shareButton.widthAnchor).isActive = true
