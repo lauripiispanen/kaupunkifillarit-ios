@@ -11,7 +11,7 @@
 # ])
 
 languages([
-  "fi-FI"
+  "fi"
 ])
 
 # The name of the scheme which contains the UI Tests
