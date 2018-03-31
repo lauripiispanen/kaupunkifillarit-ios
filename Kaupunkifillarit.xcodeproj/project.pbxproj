@@ -16,6 +16,7 @@
 		20566B2B1CDA5E2C00DD9071 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20566B291CDA5E2C00DD9071 /* LaunchScreen.storyboard */; };
 		2092BB6F1CE44E7400263C58 /* LPIAnimatedHamburgerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2092BB6E1CE44E7400263C58 /* LPIAnimatedHamburgerButton.swift */; };
 		20FCDD091D9305B100BDB6A8 /* InfoDrawerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FCDD081D9305B100BDB6A8 /* InfoDrawerView.swift */; };
+		9934649D206E901700884F24 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2027E00A1CDD2B3D00704C27 /* GoogleService-Info.plist */; };
 		998D29451EDDA53600C54EEB /* KaupunkifillaritUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998D29441EDDA53600C54EEB /* KaupunkifillaritUITests.swift */; };
 		998D294D1EE09FC000C54EEB /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998D294C1EE09FC000C54EEB /* SnapshotHelper.swift */; };
 		FBD93AC0EB2F8AB65C61F6EF /* Pods_Kaupunkifillarit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31D14FD41BAAA2102BD491FA /* Pods_Kaupunkifillarit.framework */; };
@@ -228,6 +229,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9934649D206E901700884F24 /* GoogleService-Info.plist in Resources */,
 				20566B2B1CDA5E2C00DD9071 /* LaunchScreen.storyboard in Resources */,
 				20566B281CDA5E2C00DD9071 /* Assets.xcassets in Resources */,
 				20566B261CDA5E2C00DD9071 /* Main.storyboard in Resources */,
