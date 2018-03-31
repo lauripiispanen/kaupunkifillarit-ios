@@ -34,12 +34,14 @@ class KaupunkifillaritUITests: XCTestCase {
         let app = XCUIApplication()
         let map = app.maps.element
 
-        Thread.sleep(forTimeInterval: 5)
+        Thread.sleep(forTimeInterval: 10)
 
         snapshot("01Launch")
 
         map.pinch(withScale: 3, velocity: 1)
         map.swipeLeft()
+        
+        Thread.sleep(forTimeInterval: 5)
 
         snapshot("02Zoomed")
     }
