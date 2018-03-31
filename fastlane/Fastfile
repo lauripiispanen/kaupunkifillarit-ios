@@ -33,6 +33,8 @@ platform :ios do
     # match(type: "appstore") # more information: https://codesigning.guide
     gym # Build your app - more options available
     pilot
+    increment_build_number
+
 
     # sh "your_script.sh"
     # You can also use other beta testing services here (run `fastlane actions`)
@@ -41,9 +43,11 @@ platform :ios do
   desc "Deploy a new version to the App Store"
   lane :release do
     # match(type: "appstore")
-    # snapshot
+    snapshot
     gym # Build your app - more options available
     deliver(force: true)
+    increment_build_number
+
     # frameit
   end
 
