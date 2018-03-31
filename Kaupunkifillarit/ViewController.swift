@@ -204,7 +204,11 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     
     func redrawStations(_ stations: [Station]) {
         let markers = stations.map { (station) -> StationAnnotation in
-            let annotation = StationAnnotation(amount: station.bikesAvailable, small: !self.zoomedIn)
+            let amount = UserDefaults.standard.bool(forKey: "FASTLANE_SNAPSHOT") ?
+                max(Int(arc4random_uniform(20)) - 6, 0) :
+                station.bikesAvailable
+            
+            let annotation = StationAnnotation(amount: amount, small: !self.zoomedIn)
             annotation.coordinate = CLLocationCoordinate2DMake(station.lat, station.lon)
             return annotation
         }
