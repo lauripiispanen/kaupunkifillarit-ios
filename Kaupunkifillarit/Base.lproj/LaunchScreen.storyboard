@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
     <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -23,7 +23,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="kaupunkifillarit-logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="gI5-U8-T9j">
+                            <imageView opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="kaupunkifillarit-logo" translatesAutoresizingMaskIntoConstraints="NO" id="gI5-U8-T9j">
                                 <rect key="frame" x="93.666666666666671" y="312.33333333333331" width="187.66666666666663" height="187.33333333333331"/>
                                 <accessibility key="accessibilityConfiguration">
                                     <accessibilityTraits key="traits" image="YES" notEnabled="YES"/>
@@ -32,7 +32,7 @@
                                     <constraint firstAttribute="width" secondItem="gI5-U8-T9j" secondAttribute="height" id="OOD-1a-4a8"/>
                                 </constraints>
                             </imageView>
-                            <imageView opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" multipleTouchEnabled="YES" contentMode="scaleAspectFit" image="kaupunkifillarit-text.png" translatesAutoresizingMaskIntoConstraints="NO" id="vIA-Kz-OPj">
+                            <imageView opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" multipleTouchEnabled="YES" contentMode="scaleAspectFit" image="kaupunkifillarit-text" translatesAutoresizingMaskIntoConstraints="NO" id="vIA-Kz-OPj">
                                 <rect key="frame" x="70.333333333333329" y="499.66666666666669" width="234.33333333333337" height="58.666666666666686"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="vIA-Kz-OPj" secondAttribute="height" multiplier="4" id="84M-eB-qok"/>
@@ -57,7 +57,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="kaupunkifillarit-logo.png" width="1024" height="1024"/>
-        <image name="kaupunkifillarit-text.png" width="1024" height="250"/>
+        <image name="kaupunkifillarit-logo" width="1024" height="1024"/>
+        <image name="kaupunkifillarit-text" width="1024" height="250"/>
     </resources>
 </document>

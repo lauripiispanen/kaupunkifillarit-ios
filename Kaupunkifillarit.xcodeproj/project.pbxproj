@@ -15,9 +15,6 @@
 		20566B281CDA5E2C00DD9071 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 20566B271CDA5E2C00DD9071 /* Assets.xcassets */; };
 		20566B2B1CDA5E2C00DD9071 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20566B291CDA5E2C00DD9071 /* LaunchScreen.storyboard */; };
 		2092BB6F1CE44E7400263C58 /* LPIAnimatedHamburgerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2092BB6E1CE44E7400263C58 /* LPIAnimatedHamburgerButton.swift */; };
-		209D2A471CE26B370083DD18 /* kaupunkifillarit-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 209D2A461CE26B370083DD18 /* kaupunkifillarit-logo.png */; };
-		20EB46441CE8D2B70025A8CF /* share-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 20EB46431CE8D2B70025A8CF /* share-icon.png */; };
-		20F26A5A1CDE1DD200C2109D /* kaupunkifillarit-text.png in Resources */ = {isa = PBXBuildFile; fileRef = 20F26A591CDE1DD200C2109D /* kaupunkifillarit-text.png */; };
 		20FCDD091D9305B100BDB6A8 /* InfoDrawerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FCDD081D9305B100BDB6A8 /* InfoDrawerView.swift */; };
 		998D29451EDDA53600C54EEB /* KaupunkifillaritUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998D29441EDDA53600C54EEB /* KaupunkifillaritUITests.swift */; };
 		998D294D1EE09FC000C54EEB /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998D294C1EE09FC000C54EEB /* SnapshotHelper.swift */; };
@@ -48,9 +45,6 @@
 		20566B2A1CDA5E2C00DD9071 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		20566B2C1CDA5E2C00DD9071 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2092BB6E1CE44E7400263C58 /* LPIAnimatedHamburgerButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LPIAnimatedHamburgerButton.swift; sourceTree = "<group>"; };
-		209D2A461CE26B370083DD18 /* kaupunkifillarit-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "kaupunkifillarit-logo.png"; sourceTree = "<group>"; };
-		20EB46431CE8D2B70025A8CF /* share-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "share-icon.png"; sourceTree = "<group>"; };
-		20F26A591CDE1DD200C2109D /* kaupunkifillarit-text.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "kaupunkifillarit-text.png"; sourceTree = "<group>"; };
 		20FCDD081D9305B100BDB6A8 /* InfoDrawerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoDrawerView.swift; sourceTree = "<group>"; };
 		31D14FD41BAAA2102BD491FA /* Pods_Kaupunkifillarit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Kaupunkifillarit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		998D29421EDDA53600C54EEB /* KaupunkifillaritUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KaupunkifillaritUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -103,9 +97,6 @@
 		20566B1F1CDA5E2C00DD9071 /* Kaupunkifillarit */ = {
 			isa = PBXGroup;
 			children = (
-				20EB46431CE8D2B70025A8CF /* share-icon.png */,
-				209D2A461CE26B370083DD18 /* kaupunkifillarit-logo.png */,
-				20F26A591CDE1DD200C2109D /* kaupunkifillarit-text.png */,
 				20566B201CDA5E2C00DD9071 /* AppDelegate.swift */,
 				20566B221CDA5E2C00DD9071 /* ViewController.swift */,
 				20566B241CDA5E2C00DD9071 /* Main.storyboard */,
@@ -237,10 +228,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				20EB46441CE8D2B70025A8CF /* share-icon.png in Resources */,
-				20F26A5A1CDE1DD200C2109D /* kaupunkifillarit-text.png in Resources */,
 				20566B2B1CDA5E2C00DD9071 /* LaunchScreen.storyboard in Resources */,
-				209D2A471CE26B370083DD18 /* kaupunkifillarit-logo.png in Resources */,
 				20566B281CDA5E2C00DD9071 /* Assets.xcassets in Resources */,
 				20566B261CDA5E2C00DD9071 /* Main.storyboard in Resources */,
 			);
