@@ -154,21 +154,10 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     }
     
     func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
-        if !mapHasLocatedUser && isWithinDesiredMapBounds(userLocation.coordinate) {
+        if !mapHasLocatedUser {
             mapView.setRegion(MKCoordinateRegion(center: userLocation.coordinate, span: MKCoordinateSpan(latitudeDelta: 0.015, longitudeDelta: 0.015)), animated: true)
             mapHasLocatedUser = true
         }
-    }
-    
-    func isWithinDesiredMapBounds(_ coords: CLLocationCoordinate2D) -> Bool {
-        return (coords.latitude > 60.147999 &&
-               coords.latitude < 60.222083 &&
-               coords.longitude > 24.848328 &&
-               coords.longitude < 24.987888) ||
-            (coords.latitude > 60.145009 &&
-                coords.latitude < 60.179172 &&
-                coords.longitude > 24.717007 &&
-                coords.longitude < 24.759579)
     }
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
