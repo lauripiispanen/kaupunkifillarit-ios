@@ -37,6 +37,7 @@ class FillariDataSource {
         }) 
         
         task.resume()
+        self.delegate?.updateStarting()
     }
     
     func startRefresh() {
@@ -53,9 +54,10 @@ class FillariDataSource {
 }
 
 protocol FillariDataSourceDelegate {
-    
+
     func updatedStationData(_ stations: [Station])
-    
+    func updateStarting()
+
 }
 
 struct Station {

@@ -188,9 +188,14 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     }
     
     func updatedStationData(_ stations: [Station]) {
+        UIApplication.shared.isNetworkActivityIndicatorVisible = false
         self.redrawStations(stations)
     }
     
+    func updateStarting() {
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+    }
+
     func redrawStations(_ stations: [Station]) {
         let markers = stations.map { (station) -> StationAnnotation in
             let amount = UserDefaults.standard.bool(forKey: "FASTLANE_SNAPSHOT") ?
