@@ -20,6 +20,15 @@ class FillariDataSource {
         print("Reloading station data...")
         let task = URLSession.shared.dataTask(with: API!, completionHandler: {
             (data, response, error) -> Void in
+            if error != nil {
+                #if RELEASE
+                    GAI.sharedInstance().defaultTracker?.send(
+                        GAIDictionaryBuilder.createException(
+                            withDescription: error.debugDescription,
+                            withFatal: NSNumber(booleanLiteral: false))
+                        .build() as? [AnyHashable: Any])
+                #endif
+            }
             if data == nil {
                 return
             }
@@ -31,9 +40,15 @@ class FillariDataSource {
                     self.delegate?.updatedStationData(self.stations)
                 }
             } catch let err {
+                #if RELEASE
+                    GAI.sharedInstance().defaultTracker?.send(
+                        GAIDictionaryBuilder.createException(
+                            withDescription: "Error parsing bike data",
+                            withFatal: NSNumber(booleanLiteral: false))
+                        .build() as? [AnyHashable: Any])
+                #endif
                 print(err)
             }
-            
         }) 
         
         task.resume()
