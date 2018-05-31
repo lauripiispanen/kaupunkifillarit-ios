@@ -1,14 +1,13 @@
 # Uncomment the lines below you want to change by removing the # in the beginning
 
 # A list of devices you want to take the screenshots from
-# devices([
-#   "iPhone 6",
-#   "iPhone 6 Plus",
-#   "iPhone 5",
-#   "iPad Pro (12.9-inch)",
-#   "iPad Pro (9.7-inch)",
-#   "Apple TV 1080p"
-# ])
+devices([
+   "iPhone 5s",
+   "iPhone 7",
+   "iPhone 7 Plus",
+   "iPhone X",
+   "iPad (5th generation)"
+])
 
 languages([
   "fi"
@@ -27,7 +26,7 @@ clear_previous_screenshots true # remove the '#' to clear all previously generat
 # workspace "./Project.xcworkspace"
 
 # Arguments to pass to the app on launch. See https://github.com/fastlane/fastlane/tree/master/snapshot#launch-arguments
-# launch_arguments(["-favColor red"])
+#launch_arguments([])
 
 # For more information about all available options run
 # fastlane snapshot --help

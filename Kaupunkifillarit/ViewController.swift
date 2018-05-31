@@ -13,7 +13,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     
     var map: MKMapView?
     let dataSource = FillariDataSource()
-    var mapHasLocatedUser = false
+    var mapHasLocatedUser = ProcessInfo.processInfo.arguments.contains("NOLOCATION")
     var zoomedIn = false
     let locationManager = CLLocationManager()
     let infoView = InfoDrawerView()
@@ -230,9 +230,18 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         tracker?.set(kGAIScreenName, value: name)
         
         let builder = GAIDictionaryBuilder.createScreenView()
-        tracker?.send(builder?.build() as! [AnyHashable: Any])
+        tracker?.send(builder?.build() as? [AnyHashable: Any])
     }
     
 }
 
-private let DEFAULT_MAP_REGION = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 60.1699, longitude: 24.9384), span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05))
+private let DEFAULT_COORD_SPAN = MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
+private let HELSINKI_CENTER_COORD = CLLocationCoordinate2D(latitude: 60.1699, longitude: 24.9384)
+private let TURKU_CENTER_COORD = CLLocationCoordinate2D(latitude: 60.449, longitude: 22.265)
+
+private let DEFAULT_MAP_REGION = MKCoordinateRegion(
+    center: UserDefaults.standard.string(forKey: "userLocation") == "Turku"
+        ? TURKU_CENTER_COORD
+        : HELSINKI_CENTER_COORD,
+    span: DEFAULT_COORD_SPAN
+)

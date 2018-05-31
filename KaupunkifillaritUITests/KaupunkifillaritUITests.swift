@@ -20,7 +20,6 @@ class KaupunkifillaritUITests: XCTestCase {
         // UI tests must launch the application that they test. Doing this in setup will make sure it happens for each test method.
         let app = XCUIApplication()
         setupSnapshot(app)
-        app.launch()
 
         // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
     }
@@ -30,20 +29,43 @@ class KaupunkifillaritUITests: XCTestCase {
         super.tearDown()
     }
     
-    func testTakeScreenShot() {
+    func testHelsinki() {
         let app = XCUIApplication()
+        app.launchArguments.append("NOLOCATION")
+        app.launch()
+        takeScreenshots(app: app, location: "Helsinki", startSnapshotFrom: 1)
+    }
+    
+    func testTurku() {
+        let app = XCUIApplication()
+        app.launchArguments.append("NOLOCATION")
+        app.launchArguments.append(contentsOf: ["-userLocation", "Turku"])
+        app.launch()
+        takeScreenshots(app: app, location: "Turku", startSnapshotFrom: 3)
+    }
+    
+    func takeScreenshots(app: XCUIApplication, location: String, startSnapshotFrom: Int) {
+        var snapshotNumber = startSnapshotFrom
         let map = app.maps.element
 
         Thread.sleep(forTimeInterval: 10)
+        
+        let springboard = XCUIApplication(bundleIdentifier: "com.apple.springboard")
 
-        snapshot("01Launch")
+        let allowBtn = springboard.buttons["Allow"]
+        if allowBtn.exists {
+            allowBtn.tap()
+        }
+        
+        snapshot(String(format: "%02d", snapshotNumber) + "Launch" + location)
+        snapshotNumber += 1
 
         map.pinch(withScale: 3, velocity: 1)
         map.swipeLeft()
         
         Thread.sleep(forTimeInterval: 5)
 
-        snapshot("02Zoomed")
+        snapshot(String(format: "%02d", snapshotNumber) + "Zoomed" + location)
     }
     
 }
