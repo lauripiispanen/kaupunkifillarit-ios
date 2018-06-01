@@ -42,9 +42,9 @@ func createMarkerIcon(_ amount: Int, small: Bool = false) -> UIImage {
     let markerBackground = CAShapeLayer()
     markerBackground.path = markerPath.cgPath
     if (amount == 0) {
-        markerBackground.fillColor = UIColor(red: 213.0 / 255.0, green: 213.0 / 255.0, blue: 213.0 / 255.0, alpha: 1.0).cgColor
+        markerBackground.fillColor = Colors.LIGHTGRAY.cgColor
     } else {
-        markerBackground.fillColor = UIColor(red: 251.0 / 255.0, green: 188.0 / 255.0, blue: 26.0 / 255.0, alpha: 1.0).cgColor
+        markerBackground.fillColor = Colors.BRANDYELLOW.cgColor
     }
     markerBackground.shadowColor = UIColor.black.cgColor
     markerBackground.shadowOffset = CGSize(width: 0.0, height: 2.0)

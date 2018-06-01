@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		203CB5ED1CDC990B00E20556 /* FillariDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203CB5EC1CDC990B00E20556 /* FillariDataSource.swift */; };
 		203CB5F11CDC9FC400E20556 /* StationAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203CB5F01CDC9FC400E20556 /* StationAnnotation.swift */; };
 		20566B211CDA5E2C00DD9071 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20566B201CDA5E2C00DD9071 /* AppDelegate.swift */; };
 		20566B231CDA5E2C00DD9071 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20566B221CDA5E2C00DD9071 /* ViewController.swift */; };
@@ -17,12 +16,37 @@
 		2092BB6F1CE44E7400263C58 /* LPIAnimatedHamburgerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2092BB6E1CE44E7400263C58 /* LPIAnimatedHamburgerButton.swift */; };
 		20FCDD091D9305B100BDB6A8 /* InfoDrawerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FCDD081D9305B100BDB6A8 /* InfoDrawerView.swift */; };
 		9934649D206E901700884F24 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2027E00A1CDD2B3D00704C27 /* GoogleService-Info.plist */; };
+		99352A5420C07AFC0013E05B /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 99352A5220C07AFC0013E05B /* Interface.storyboard */; };
+		99352A5620C07AFE0013E05B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 99352A5520C07AFE0013E05B /* Assets.xcassets */; };
+		99352A5D20C07AFE0013E05B /* Kaupunkifillarit-watchkit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 99352A5C20C07AFE0013E05B /* Kaupunkifillarit-watchkit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		99352A6220C07AFE0013E05B /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99352A6120C07AFE0013E05B /* InterfaceController.swift */; };
+		99352A6420C07AFE0013E05B /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99352A6320C07AFE0013E05B /* ExtensionDelegate.swift */; };
+		99352A6620C07AFF0013E05B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 99352A6520C07AFF0013E05B /* Assets.xcassets */; };
+		99352A6A20C07AFF0013E05B /* Kaupunkifillarit-watchkit.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 99352A5020C07AFC0013E05B /* Kaupunkifillarit-watchkit.app */; };
+		99352A7320C07E130013E05B /* FillariDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203CB5EC1CDC990B00E20556 /* FillariDataSource.swift */; };
+		99352A7420C07E150013E05B /* FillariDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203CB5EC1CDC990B00E20556 /* FillariDataSource.swift */; };
 		998D29451EDDA53600C54EEB /* KaupunkifillaritUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998D29441EDDA53600C54EEB /* KaupunkifillaritUITests.swift */; };
 		998D294D1EE09FC000C54EEB /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998D294C1EE09FC000C54EEB /* SnapshotHelper.swift */; };
+		99DAD74320C1D6460049A75D /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99DAD74220C1D6460049A75D /* Colors.swift */; };
+		99DAD74420C1D67E0049A75D /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99DAD74220C1D6460049A75D /* Colors.swift */; };
 		FBD93AC0EB2F8AB65C61F6EF /* Pods_Kaupunkifillarit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31D14FD41BAAA2102BD491FA /* Pods_Kaupunkifillarit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		99352A5E20C07AFE0013E05B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 20566B151CDA5E2C00DD9071 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 99352A5B20C07AFE0013E05B;
+			remoteInfo = "Kaupunkifillarit-watchkit Extension";
+		};
+		99352A6820C07AFF0013E05B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 20566B151CDA5E2C00DD9071 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 99352A4F20C07AFC0013E05B;
+			remoteInfo = "Kaupunkifillarit-watchkit";
+		};
 		998D29471EDDA53600C54EEB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 20566B151CDA5E2C00DD9071 /* Project object */;
@@ -31,6 +55,31 @@
 			remoteInfo = Kaupunkifillarit;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		99352A7020C07AFF0013E05B /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				99352A5D20C07AFE0013E05B /* Kaupunkifillarit-watchkit Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		99352A7220C07AFF0013E05B /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				99352A6A20C07AFF0013E05B /* Kaupunkifillarit-watchkit.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		0D181D4850E90047712BF95B /* Pods-Kaupunkifillarit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kaupunkifillarit.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Kaupunkifillarit/Pods-Kaupunkifillarit.debug.xcconfig"; sourceTree = "<group>"; };
@@ -48,10 +97,20 @@
 		2092BB6E1CE44E7400263C58 /* LPIAnimatedHamburgerButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LPIAnimatedHamburgerButton.swift; sourceTree = "<group>"; };
 		20FCDD081D9305B100BDB6A8 /* InfoDrawerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoDrawerView.swift; sourceTree = "<group>"; };
 		31D14FD41BAAA2102BD491FA /* Pods_Kaupunkifillarit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Kaupunkifillarit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		99352A5020C07AFC0013E05B /* Kaupunkifillarit-watchkit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Kaupunkifillarit-watchkit.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		99352A5320C07AFC0013E05B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
+		99352A5520C07AFE0013E05B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		99352A5720C07AFE0013E05B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		99352A5C20C07AFE0013E05B /* Kaupunkifillarit-watchkit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Kaupunkifillarit-watchkit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		99352A6120C07AFE0013E05B /* InterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceController.swift; sourceTree = "<group>"; };
+		99352A6320C07AFE0013E05B /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
+		99352A6520C07AFF0013E05B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		99352A6720C07AFF0013E05B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		998D29421EDDA53600C54EEB /* KaupunkifillaritUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KaupunkifillaritUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		998D29441EDDA53600C54EEB /* KaupunkifillaritUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KaupunkifillaritUITests.swift; sourceTree = "<group>"; };
 		998D29461EDDA53600C54EEB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		998D294C1EE09FC000C54EEB /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SnapshotHelper.swift; path = fastlane/SnapshotHelper.swift; sourceTree = SOURCE_ROOT; };
+		99DAD74220C1D6460049A75D /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		F486F68096CFEAB956D97F70 /* Pods-Kaupunkifillarit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kaupunkifillarit.release.xcconfig"; path = "Pods/Target Support Files/Pods-Kaupunkifillarit/Pods-Kaupunkifillarit.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -61,6 +120,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				FBD93AC0EB2F8AB65C61F6EF /* Pods_Kaupunkifillarit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		99352A5920C07AFE0013E05B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -80,6 +146,8 @@
 				2027E00A1CDD2B3D00704C27 /* GoogleService-Info.plist */,
 				20566B1F1CDA5E2C00DD9071 /* Kaupunkifillarit */,
 				998D29431EDDA53600C54EEB /* KaupunkifillaritUITests */,
+				99352A5120C07AFC0013E05B /* Kaupunkifillarit-watchkit */,
+				99352A6020C07AFE0013E05B /* Kaupunkifillarit-watchkit Extension */,
 				20566B1E1CDA5E2C00DD9071 /* Products */,
 				375E235CEC9B3FC75F2FD42C /* Pods */,
 				965C55A42FB6F794A6BF2F60 /* Frameworks */,
@@ -91,6 +159,8 @@
 			children = (
 				20566B1D1CDA5E2C00DD9071 /* Kaupunkifillarit.app */,
 				998D29421EDDA53600C54EEB /* KaupunkifillaritUITests.xctest */,
+				99352A5020C07AFC0013E05B /* Kaupunkifillarit-watchkit.app */,
+				99352A5C20C07AFE0013E05B /* Kaupunkifillarit-watchkit Extension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -109,6 +179,7 @@
 				203CB5F01CDC9FC400E20556 /* StationAnnotation.swift */,
 				2092BB6E1CE44E7400263C58 /* LPIAnimatedHamburgerButton.swift */,
 				20FCDD081D9305B100BDB6A8 /* InfoDrawerView.swift */,
+				99DAD74220C1D6460049A75D /* Colors.swift */,
 			);
 			path = Kaupunkifillarit;
 			sourceTree = "<group>";
@@ -128,6 +199,27 @@
 				31D14FD41BAAA2102BD491FA /* Pods_Kaupunkifillarit.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		99352A5120C07AFC0013E05B /* Kaupunkifillarit-watchkit */ = {
+			isa = PBXGroup;
+			children = (
+				99352A5220C07AFC0013E05B /* Interface.storyboard */,
+				99352A5520C07AFE0013E05B /* Assets.xcassets */,
+				99352A5720C07AFE0013E05B /* Info.plist */,
+			);
+			path = "Kaupunkifillarit-watchkit";
+			sourceTree = "<group>";
+		};
+		99352A6020C07AFE0013E05B /* Kaupunkifillarit-watchkit Extension */ = {
+			isa = PBXGroup;
+			children = (
+				99352A6120C07AFE0013E05B /* InterfaceController.swift */,
+				99352A6320C07AFE0013E05B /* ExtensionDelegate.swift */,
+				99352A6520C07AFF0013E05B /* Assets.xcassets */,
+				99352A6720C07AFF0013E05B /* Info.plist */,
+			);
+			path = "Kaupunkifillarit-watchkit Extension";
 			sourceTree = "<group>";
 		};
 		998D29431EDDA53600C54EEB /* KaupunkifillaritUITests */ = {
@@ -153,15 +245,51 @@
 				20566B1B1CDA5E2C00DD9071 /* Resources */,
 				29CA2B841FDF1CDC2D3E5BB2 /* [CP] Embed Pods Frameworks */,
 				2262CF6E93AC1E424158CEF7 /* [CP] Copy Pods Resources */,
+				99352A7220C07AFF0013E05B /* Embed Watch Content */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				99352A6920C07AFF0013E05B /* PBXTargetDependency */,
 			);
 			name = Kaupunkifillarit;
 			productName = Kaupunkifillarit;
 			productReference = 20566B1D1CDA5E2C00DD9071 /* Kaupunkifillarit.app */;
 			productType = "com.apple.product-type.application";
+		};
+		99352A4F20C07AFC0013E05B /* Kaupunkifillarit-watchkit */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 99352A7120C07AFF0013E05B /* Build configuration list for PBXNativeTarget "Kaupunkifillarit-watchkit" */;
+			buildPhases = (
+				99352A4E20C07AFC0013E05B /* Resources */,
+				99352A7020C07AFF0013E05B /* Embed App Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				99352A5F20C07AFE0013E05B /* PBXTargetDependency */,
+			);
+			name = "Kaupunkifillarit-watchkit";
+			productName = "Kaupunkifillarit-watchkit";
+			productReference = 99352A5020C07AFC0013E05B /* Kaupunkifillarit-watchkit.app */;
+			productType = "com.apple.product-type.application.watchapp2";
+		};
+		99352A5B20C07AFE0013E05B /* Kaupunkifillarit-watchkit Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 99352A6F20C07AFF0013E05B /* Build configuration list for PBXNativeTarget "Kaupunkifillarit-watchkit Extension" */;
+			buildPhases = (
+				99352A5820C07AFE0013E05B /* Sources */,
+				99352A5920C07AFE0013E05B /* Frameworks */,
+				99352A5A20C07AFE0013E05B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Kaupunkifillarit-watchkit Extension";
+			productName = "Kaupunkifillarit-watchkit Extension";
+			productReference = 99352A5C20C07AFE0013E05B /* Kaupunkifillarit-watchkit Extension.appex */;
+			productType = "com.apple.product-type.watchkit2-extension";
 		};
 		998D29411EDDA53600C54EEB /* KaupunkifillaritUITests */ = {
 			isa = PBXNativeTarget;
@@ -187,7 +315,7 @@
 		20566B151CDA5E2C00DD9071 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0830;
+				LastSwiftUpdateCheck = 0930;
 				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = "Lauri Piispanen";
 				TargetAttributes = {
@@ -195,6 +323,16 @@
 						CreatedOnToolsVersion = 7.3;
 						DevelopmentTeam = 62W2UCA4LQ;
 						LastSwiftMigration = 0910;
+					};
+					99352A4F20C07AFC0013E05B = {
+						CreatedOnToolsVersion = 9.3.1;
+						DevelopmentTeam = 62W2UCA4LQ;
+						ProvisioningStyle = Automatic;
+					};
+					99352A5B20C07AFE0013E05B = {
+						CreatedOnToolsVersion = 9.3.1;
+						DevelopmentTeam = 62W2UCA4LQ;
+						ProvisioningStyle = Automatic;
 					};
 					998D29411EDDA53600C54EEB = {
 						CreatedOnToolsVersion = 8.3.2;
@@ -220,6 +358,8 @@
 			targets = (
 				20566B1C1CDA5E2C00DD9071 /* Kaupunkifillarit */,
 				998D29411EDDA53600C54EEB /* KaupunkifillaritUITests */,
+				99352A4F20C07AFC0013E05B /* Kaupunkifillarit-watchkit */,
+				99352A5B20C07AFE0013E05B /* Kaupunkifillarit-watchkit Extension */,
 			);
 		};
 /* End PBXProject section */
@@ -233,6 +373,23 @@
 				20566B2B1CDA5E2C00DD9071 /* LaunchScreen.storyboard in Resources */,
 				20566B281CDA5E2C00DD9071 /* Assets.xcassets in Resources */,
 				20566B261CDA5E2C00DD9071 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		99352A4E20C07AFC0013E05B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				99352A5620C07AFE0013E05B /* Assets.xcassets in Resources */,
+				99352A5420C07AFC0013E05B /* Interface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		99352A5A20C07AFE0013E05B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				99352A6620C07AFF0013E05B /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -304,12 +461,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				99352A7320C07E130013E05B /* FillariDataSource.swift in Sources */,
 				2092BB6F1CE44E7400263C58 /* LPIAnimatedHamburgerButton.swift in Sources */,
-				203CB5ED1CDC990B00E20556 /* FillariDataSource.swift in Sources */,
 				20FCDD091D9305B100BDB6A8 /* InfoDrawerView.swift in Sources */,
+				99DAD74320C1D6460049A75D /* Colors.swift in Sources */,
 				20566B231CDA5E2C00DD9071 /* ViewController.swift in Sources */,
 				20566B211CDA5E2C00DD9071 /* AppDelegate.swift in Sources */,
 				203CB5F11CDC9FC400E20556 /* StationAnnotation.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		99352A5820C07AFE0013E05B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				99352A7420C07E150013E05B /* FillariDataSource.swift in Sources */,
+				99DAD74420C1D67E0049A75D /* Colors.swift in Sources */,
+				99352A6420C07AFE0013E05B /* ExtensionDelegate.swift in Sources */,
+				99352A6220C07AFE0013E05B /* InterfaceController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -325,6 +494,16 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		99352A5F20C07AFE0013E05B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 99352A5B20C07AFE0013E05B /* Kaupunkifillarit-watchkit Extension */;
+			targetProxy = 99352A5E20C07AFE0013E05B /* PBXContainerItemProxy */;
+		};
+		99352A6920C07AFF0013E05B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 99352A4F20C07AFC0013E05B /* Kaupunkifillarit-watchkit */;
+			targetProxy = 99352A6820C07AFF0013E05B /* PBXContainerItemProxy */;
+		};
 		998D29481EDDA53600C54EEB /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 20566B1C1CDA5E2C00DD9071 /* Kaupunkifillarit */;
@@ -347,6 +526,14 @@
 				20566B2A1CDA5E2C00DD9071 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		99352A5220C07AFC0013E05B /* Interface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				99352A5320C07AFC0013E05B /* Base */,
+			);
+			name = Interface.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -511,6 +698,108 @@
 			};
 			name = Release;
 		};
+		99352A6B20C07AFF0013E05B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 62W2UCA4LQ;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				IBSC_MODULE = Kaupunkifillarit_watchkit_Extension;
+				INFOPLIST_FILE = "Kaupunkifillarit-watchkit/Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = fi.piispanen.kaupunkifillarit.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 4.3;
+			};
+			name = Debug;
+		};
+		99352A6C20C07AFF0013E05B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 62W2UCA4LQ;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				IBSC_MODULE = Kaupunkifillarit_watchkit_Extension;
+				INFOPLIST_FILE = "Kaupunkifillarit-watchkit/Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = fi.piispanen.kaupunkifillarit.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 4.3;
+			};
+			name = Release;
+		};
+		99352A6D20C07AFF0013E05B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 62W2UCA4LQ;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = "Kaupunkifillarit-watchkit Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = fi.piispanen.kaupunkifillarit.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 4.3;
+			};
+			name = Debug;
+		};
+		99352A6E20C07AFF0013E05B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 62W2UCA4LQ;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = "Kaupunkifillarit-watchkit Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = fi.piispanen.kaupunkifillarit.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 4.3;
+			};
+			name = Release;
+		};
 		998D294A1EDDA53600C54EEB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -568,6 +857,24 @@
 			buildConfigurations = (
 				20566B301CDA5E2C00DD9071 /* Debug */,
 				20566B311CDA5E2C00DD9071 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		99352A6F20C07AFF0013E05B /* Build configuration list for PBXNativeTarget "Kaupunkifillarit-watchkit Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				99352A6D20C07AFF0013E05B /* Debug */,
+				99352A6E20C07AFF0013E05B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		99352A7120C07AFF0013E05B /* Build configuration list for PBXNativeTarget "Kaupunkifillarit-watchkit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				99352A6B20C07AFF0013E05B /* Debug */,
+				99352A6C20C07AFF0013E05B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="14109" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc">
+    <device id="watch38" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="watchOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="14031"/>
+    </dependencies>
+    <scenes>
+        <!--Interface Controller-->
+        <scene sceneID="aou-V4-d1y">
+            <objects>
+                <controller spacing="0.0" id="AgC-eL-Hgc" customClass="InterfaceController" customModule="Kaupunkifillarit_watchkit" customModuleProvider="target">
+                    <items>
+                        <table alignment="left" id="UIb-gh-5IO">
+                            <items>
+                                <tableRow identifier="StationRowType" selectable="NO" id="dQu-mO-LQF" customClass="StationRowType" customModule="Kaupunkifillarit_watchkit_Extension">
+                                    <group key="rootItem" width="1" alignment="left" id="q1E-NA-O9L">
+                                        <items>
+                                            <group width="0.69999999999999996" height="0.80000000000000004" alignment="left" verticalAlignment="center" layout="vertical" id="Xz2-fb-253">
+                                                <items>
+                                                    <label width="1" height="0.5" alignment="left" text="Bike stand" textAlignment="left" id="Zhg-Qb-C9s">
+                                                        <fontDescription key="font" type="system" weight="semibold" pointSize="15"/>
+                                                    </label>
+                                                    <label width="1" height="0.5" alignment="left" verticalAlignment="bottom" text="Distance" textAlignment="left" id="fs0-qf-ygd">
+                                                        <fontDescription key="font" type="system" weight="thin" pointSize="15"/>
+                                                    </label>
+                                                </items>
+                                            </group>
+                                            <label width="0.29999999999999999" height="1" alignment="right" verticalAlignment="center" text="0" textAlignment="right" id="NQo-wh-A2J">
+                                                <color key="textColor" red="0.98431372549999996" green="0.73725490199999999" blue="0.1019607843" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <fontDescription key="font" type="system" weight="semibold" pointSize="26"/>
+                                            </label>
+                                        </items>
+                                    </group>
+                                    <connections>
+                                        <outlet property="bikeStandNameLabel" destination="Zhg-Qb-C9s" id="xZz-aa-r4u"/>
+                                        <outlet property="distanceLabel" destination="fs0-qf-ygd" id="qif-i3-pec"/>
+                                        <outlet property="numberOfBikesLabel" destination="NQo-wh-A2J" id="opO-S5-UYz"/>
+                                    </connections>
+                                </tableRow>
+                            </items>
+                        </table>
+                    </items>
+                    <connections>
+                        <outlet property="stationsTable" destination="UIb-gh-5IO" id="U3k-vk-op5"/>
+                    </connections>
+                </controller>
+            </objects>
+        </scene>
+    </scenes>
+</document>
