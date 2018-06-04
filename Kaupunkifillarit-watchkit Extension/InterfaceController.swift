@@ -62,6 +62,16 @@ class InterfaceController: WKInterfaceController, FillariDataSourceDelegate, CLL
         super.didDeactivate()
     }
     
+    override func contextForSegue(withIdentifier segueIdentifier: String,
+                                  in table: WKInterfaceTable,
+                                  rowIndex: Int) -> Any? {
+        if let row = table.rowController(at: rowIndex) as? StationRowType {
+            return row.station
+        } else {
+            return nil
+        }
+    }
+    
     func redrawStationData() {
         var sortedStations = self.stations
         if let loc = self.location {

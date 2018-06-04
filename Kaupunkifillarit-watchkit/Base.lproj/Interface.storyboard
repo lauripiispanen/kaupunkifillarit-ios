@@ -9,14 +9,14 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="14031"/>
     </dependencies>
     <scenes>
-        <!--Interface Controller-->
+        <!--Kaupunkifillarit.fi-->
         <scene sceneID="aou-V4-d1y">
             <objects>
-                <controller spacing="0.0" id="AgC-eL-Hgc" customClass="InterfaceController" customModule="Kaupunkifillarit_watchkit" customModuleProvider="target">
+                <controller title="Kaupunkifillarit.fi" spacing="0.0" id="AgC-eL-Hgc" customClass="InterfaceController" customModule="Kaupunkifillarit_watchkit" customModuleProvider="target">
                     <items>
                         <table alignment="left" id="UIb-gh-5IO">
                             <items>
-                                <tableRow identifier="StationRowType" selectable="NO" id="dQu-mO-LQF" customClass="StationRowType" customModule="Kaupunkifillarit_watchkit_Extension">
+                                <tableRow identifier="StationRowType" id="dQu-mO-LQF" customClass="StationRowType" customModule="Kaupunkifillarit_watchkit_Extension">
                                     <group key="rootItem" width="1" alignment="left" id="q1E-NA-O9L">
                                         <items>
                                             <group width="0.69999999999999996" height="0.80000000000000004" alignment="left" verticalAlignment="center" layout="vertical" id="Xz2-fb-253">
@@ -39,6 +39,7 @@
                                         <outlet property="bikeStandNameLabel" destination="Zhg-Qb-C9s" id="xZz-aa-r4u"/>
                                         <outlet property="distanceLabel" destination="fs0-qf-ygd" id="qif-i3-pec"/>
                                         <outlet property="numberOfBikesLabel" destination="NQo-wh-A2J" id="opO-S5-UYz"/>
+                                        <segue destination="fiX-sW-Hzs" kind="push" identifier="MapSegue" id="NJo-Ko-06p"/>
                                     </connections>
                                 </tableRow>
                             </items>
@@ -50,5 +51,39 @@
                 </controller>
             </objects>
         </scene>
+        <!--Map-->
+        <scene sceneID="8PZ-ko-2i7">
+            <objects>
+                <controller identifier="Map" id="fiX-sW-Hzs" customClass="StationMapController" customModule="Kaupunkifillarit_watchkit_Extension">
+                    <items>
+                        <group width="1" height="0.20000000000000001" alignment="left" id="zpn-PB-fAF">
+                            <items>
+                                <group width="0.69999999999999996" alignment="left" layout="vertical" id="jgU-9i-gWj">
+                                    <items>
+                                        <label width="1" height="0.5" alignment="left" text="Bike stand" id="ufw-qT-M0b">
+                                            <fontDescription key="font" type="system" weight="semibold" pointSize="15"/>
+                                        </label>
+                                        <label width="1" height="0.5" alignment="left" text="Distance" id="Thf-nB-GOW"/>
+                                    </items>
+                                </group>
+                                <label width="0.29999999999999999" height="1" alignment="left" text="36" textAlignment="center" id="Kqv-ub-xHb">
+                                    <color key="textColor" red="0.98431372549999996" green="0.73725490199999999" blue="0.1019607843" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <fontDescription key="font" type="system" weight="semibold" pointSize="26"/>
+                                </label>
+                            </items>
+                        </group>
+                        <map height="100" alignment="left" id="IR5-Il-Rkb"/>
+                    </items>
+                    <connections>
+                        <outlet property="bikeStandNameLabel" destination="ufw-qT-M0b" id="Gtb-CE-5RN"/>
+                        <outlet property="distanceLabel" destination="Thf-nB-GOW" id="DRP-tZ-aDE"/>
+                        <outlet property="numberOfBikesLabel" destination="Kqv-ub-xHb" id="PMN-Bw-GdR"/>
+                        <outlet property="stationMap" destination="IR5-Il-Rkb" id="adL-MJ-6jB"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="357" y="288"/>
+        </scene>
     </scenes>
+    <color key="tintColor" red="0.98431372549999996" green="0.73725490199999999" blue="0.1019607843" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>
