@@ -26,7 +26,7 @@ class InterfaceController: WKInterfaceController, FillariDataSourceDelegate, CLL
             self.locationManager?.delegate = self
             self.locationManager?.desiredAccuracy = kCLLocationAccuracyBestForNavigation
             self.locationManager?.activityType = .otherNavigation
-            self.locationManager?.distanceFilter = 5
+            self.locationManager?.distanceFilter = 10
         }
         dataSource.delegate = self
     }
@@ -46,7 +46,7 @@ class InterfaceController: WKInterfaceController, FillariDataSourceDelegate, CLL
         let authStatus = CLLocationManager.authorizationStatus()
         if (authStatus == .authorizedWhenInUse ||
             authStatus == .authorizedAlways) {
-            self.locationManager?.startUpdatingLocation()
+            self.locationManager?.requestLocation()
         } else {
             self.locationManager?.requestWhenInUseAuthorization()
         }
@@ -69,27 +69,15 @@ class InterfaceController: WKInterfaceController, FillariDataSourceDelegate, CLL
                 return loc.distance(from: stationToLoc(s1)) < loc.distance(from: stationToLoc(s2))
             })
         }
-        sortedStations = Array(sortedStations.prefix(20))
+        sortedStations = Array(sortedStations.prefix(10))
         self.stationsTable.setNumberOfRows(sortedStations.count, withRowType: "StationRowType")
 
         (0 ..< self.stationsTable.numberOfRows).forEach { rowNum in
             if let row = stationsTable.rowController(at: rowNum) as? StationRowType {
                 if rowNum < sortedStations.count {
                     let station = sortedStations[rowNum]
-
-                    row.bikeStandNameLabel.setText(station.name)
-                    row.numberOfBikesLabel.setText(String(station.bikesAvailable))
-                    row.numberOfBikesLabel.setTextColor(
-                        station.bikesAvailable == 0
-                            ? UIColor.black
-                            : Colors.BRANDYELLOW
-                    )
-                    if let loc = self.location {
-                        let dist = Int(loc.distance(from: stationToLoc(station)))
-                        row.distanceLabel.setText(String(dist) + "m")
-                    } else {
-                        row.distanceLabel.setText("")
-                    }
+                    row.setStation(station)
+                    row.setDistanceFromLocation(self.location)
                 }
             }
         }
@@ -108,12 +96,67 @@ class InterfaceController: WKInterfaceController, FillariDataSourceDelegate, CLL
         redrawStationData()
     }
 
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print("Couldn't get location", error)
+    }
+
 }
 
 class StationRowType: NSObject {
+
     @IBOutlet weak var bikeStandNameLabel: WKInterfaceLabel!
     @IBOutlet weak var numberOfBikesLabel: WKInterfaceLabel!
     @IBOutlet weak var distanceLabel: WKInterfaceLabel!
+    private var bikeStandName: String = " " {
+        didSet {
+            if bikeStandName != oldValue {
+                self.bikeStandNameLabel.setText(bikeStandName)
+            }
+        }
+    }
+    private var numberOfBikes: String = " " {
+        didSet {
+            if numberOfBikes != oldValue {
+                self.numberOfBikesLabel.setText(numberOfBikes)
+            }
+        }
+    }
+    private var numberOfBikesColor: UIColor = UIColor.black {
+        didSet {
+            if numberOfBikesColor != oldValue {
+                self.numberOfBikesLabel.setTextColor(numberOfBikesColor)
+            }
+        }
+    }
+    private var distance: String = " " {
+        didSet {
+            if distance != oldValue {
+                self.distanceLabel.setText(distance)
+            }
+        }
+    }
+    var station: Station?
+
+    func setStation(_ station: Station) {
+        self.station = station
+        self.bikeStandName = station.name
+        self.numberOfBikes = String(station.bikesAvailable)
+        self.numberOfBikesColor = (
+            station.bikesAvailable == 0
+                ? UIColor.black
+                : Colors.BRANDYELLOW
+        )
+    }
+
+    func setDistanceFromLocation(_ location: CLLocation?) {
+        if let loc = location,
+           let st = station {
+            let dist = Int(loc.distance(from: stationToLoc(st)))
+            self.distance = String(dist) + "m"
+        } else {
+            self.distance = ""
+        }
+    }
 
 }
 
