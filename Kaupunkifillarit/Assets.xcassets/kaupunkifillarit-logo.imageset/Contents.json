@@ -4,6 +4,16 @@
       "idiom" : "universal",
       "filename" : "kaupunkifillarit-logo.png",
       "scale" : "1x"
+    },
+    {
+      "idiom" : "universal",
+      "filename" : "kaupunkifillarit-logo-1.png",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "universal",
+      "filename" : "kaupunkifillarit-logo-2.png",
+      "scale" : "3x"
     }
   ],
   "info" : {
