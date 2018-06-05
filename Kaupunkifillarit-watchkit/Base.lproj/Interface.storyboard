@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="14109" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc">
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="14109" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="xZL-VP-cDm" pageOrientation="vertical">
     <device id="watch38" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -9,10 +9,21 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="14031"/>
     </dependencies>
     <scenes>
+        <!--Loading Interface Controller-->
+        <scene sceneID="tBO-vh-vHy">
+            <objects>
+                <controller fullScreen="YES" id="xZL-VP-cDm" customClass="LoadingInterfaceController" customModule="Kaupunkifillarit_watchkit_Extension">
+                    <items>
+                        <label width="1" height="0.20000000000000001" alignment="center" verticalAlignment="center" text="Paikannetaan..." textAlignment="center" id="VS7-hg-q30"/>
+                    </items>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="-284" y="288"/>
+        </scene>
         <!--Kaupunkifillarit.fi-->
         <scene sceneID="aou-V4-d1y">
             <objects>
-                <controller title="Kaupunkifillarit.fi" spacing="0.0" id="AgC-eL-Hgc" customClass="InterfaceController" customModule="Kaupunkifillarit_watchkit" customModuleProvider="target">
+                <controller identifier="stationList" title="Kaupunkifillarit.fi" spacing="0.0" id="AgC-eL-Hgc" customClass="InterfaceController" customModule="Kaupunkifillarit_watchkit" customModuleProvider="target">
                     <items>
                         <table alignment="left" id="UIb-gh-5IO">
                             <items>

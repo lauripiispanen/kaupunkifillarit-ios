@@ -30,6 +30,7 @@
 		99DAD74320C1D6460049A75D /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99DAD74220C1D6460049A75D /* Colors.swift */; };
 		99DAD74420C1D67E0049A75D /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99DAD74220C1D6460049A75D /* Colors.swift */; };
 		99DAD74620C5C75E0049A75D /* StationMapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99DAD74520C5C75E0049A75D /* StationMapController.swift */; };
+		99DAD74820C713FE0049A75D /* LoadingInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99DAD74720C713FE0049A75D /* LoadingInterfaceController.swift */; };
 		FBD93AC0EB2F8AB65C61F6EF /* Pods_Kaupunkifillarit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31D14FD41BAAA2102BD491FA /* Pods_Kaupunkifillarit.framework */; };
 /* End PBXBuildFile section */
 
@@ -113,6 +114,7 @@
 		998D294C1EE09FC000C54EEB /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SnapshotHelper.swift; path = fastlane/SnapshotHelper.swift; sourceTree = SOURCE_ROOT; };
 		99DAD74220C1D6460049A75D /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		99DAD74520C5C75E0049A75D /* StationMapController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationMapController.swift; sourceTree = "<group>"; };
+		99DAD74720C713FE0049A75D /* LoadingInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingInterfaceController.swift; sourceTree = "<group>"; };
 		F486F68096CFEAB956D97F70 /* Pods-Kaupunkifillarit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kaupunkifillarit.release.xcconfig"; path = "Pods/Target Support Files/Pods-Kaupunkifillarit/Pods-Kaupunkifillarit.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -221,6 +223,7 @@
 				99352A6520C07AFF0013E05B /* Assets.xcassets */,
 				99352A6720C07AFF0013E05B /* Info.plist */,
 				99DAD74520C5C75E0049A75D /* StationMapController.swift */,
+				99DAD74720C713FE0049A75D /* LoadingInterfaceController.swift */,
 			);
 			path = "Kaupunkifillarit-watchkit Extension";
 			sourceTree = "<group>";
@@ -478,6 +481,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				99DAD74820C713FE0049A75D /* LoadingInterfaceController.swift in Sources */,
 				99352A7420C07E150013E05B /* FillariDataSource.swift in Sources */,
 				99DAD74420C1D67E0049A75D /* Colors.swift in Sources */,
 				99352A6420C07AFE0013E05B /* ExtensionDelegate.swift in Sources */,
