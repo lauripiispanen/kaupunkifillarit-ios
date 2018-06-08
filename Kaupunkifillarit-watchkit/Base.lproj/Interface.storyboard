@@ -9,10 +9,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="14031"/>
     </dependencies>
     <scenes>
-        <!--Loading Interface Controller-->
+        <!--loadingController-->
         <scene sceneID="tBO-vh-vHy">
             <objects>
-                <controller fullScreen="YES" id="xZL-VP-cDm" customClass="LoadingInterfaceController" customModule="Kaupunkifillarit_watchkit_Extension">
+                <controller identifier="loadingController" fullScreen="YES" id="xZL-VP-cDm" customClass="LoadingInterfaceController" customModule="Kaupunkifillarit_watchkit_Extension">
                     <items>
                         <label width="1" height="0.20000000000000001" alignment="center" verticalAlignment="center" text="Paikannetaan..." textAlignment="center" id="VS7-hg-q30"/>
                     </items>

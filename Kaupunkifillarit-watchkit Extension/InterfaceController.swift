@@ -13,9 +13,11 @@ import Foundation
 class InterfaceController: WKInterfaceController {
 
     @IBOutlet weak var stationsTable: WKInterfaceTable!
+    var previousContext: Any? = nil
 
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
+        self.previousContext = context
         if let ctx = context as? StationSelectorContext {
             let sortedStations = Array(ctx.stations.sorted(by: { s1, s2 in
                 return ctx.location.distance(from: stationToLoc(s1)) <
@@ -35,6 +37,17 @@ class InterfaceController: WKInterfaceController {
                     }
                 }
             }
+        }
+    }
+    
+    override func willActivate() {
+        super.willActivate()
+        if let ctx = previousContext as? StationSelectorContext,
+            ctx.contextCreated < Date().addingTimeInterval(-5*60) {
+
+            WKInterfaceController.reloadRootControllers(withNamesAndContexts: [
+                (name: "loadingController", context: NSObject())
+            ])
         }
     }
     
@@ -113,6 +126,12 @@ class StationRowType: NSObject {
 struct StationSelectorContext {
     var location: CLLocation
     var stations: [Station] = []
+    var contextCreated: Date = Date()
+
+    init(location: CLLocation, stations: [Station]) {
+        self.location = location
+        self.stations = stations
+    }
 }
 
 
